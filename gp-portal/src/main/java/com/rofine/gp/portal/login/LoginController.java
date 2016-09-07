@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.rofine.gp.application.user.User2Impl;
 import com.rofine.gp.domain.organization.target.TargetException;
-import com.rofine.gp.platform.user.UserImpl;
 import com.rofine.gp.portal.security.UserUtil;
 
 @Controller
@@ -61,7 +61,7 @@ public class LoginController {
 
 	@RequestMapping(value = "login/user/{userId}/org/{orgId}/dept/{deptId}/role/{roleIds}", method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String, Object> login(@ModelAttribute("user") UserImpl user) throws TargetException {
+	public Map<String, Object> login(@ModelAttribute("user") User2Impl user) throws TargetException {
 
 		UserUtil.setUser(user);
 	
