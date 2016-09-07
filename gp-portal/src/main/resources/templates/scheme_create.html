@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+    layout:decorator="base/layout">
+<head>
+<meta charset="utf-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Bootstrap 101 Template</title>
+</head>
+<body class="no-trans">                                                                                       
+	<!-- banner start -->                                                                                 
+	<!-- ================ -->                                                                             
+	<div layout:fragment="content" id="banner" class="banner">                                            
+		<div class="banner-image"></div>                                                              
+		<div class="banner-caption">                                                                  
+			<div class="container">                                                               
+				<div>                                                                         
+					<form role="form" id="createSchemeForm" method="POST">
+						<div class="form-group has-feedback">                                                                                                                    
+							<label class="sr-only" for="Name">Name：</label>                                                                                                 
+							<input type="text" class="form-control" id="name" placeholder="Name" name="name" required="true" value="我的方案"/>                              
+						</div>                                                                                                                                                   
+						<div class="form-group has-feedback">                                                                                                                    
+							<label class="sr-only" for="year">year: </label>                                                                                                 
+							<select name="year" class="form-control" required="true">                                                                                                                             
+								<option value="2016">2016</option>                                                                                                       
+								<option value="2015">2015</option>                                                                                                       
+							</select>                                                                                                                                        
+						</div>                                                                                                                                                   
+						<div class="form-group has-feedback">                                                                                                                    
+							<label class="sr-only" for="targetLevelCount">targetLevel：</label>                                                                              
+							<input type="text" class="form-control" id="targetLevelCount" placeholder="targetLevelCount" name="targetLevelCount" required="true" value="3"/> 
+						</div>                                                                                                                                                   
+						<div class="form-group has-feedback">                                                                                                                    
+							<label class="sr-only" for="description">description：</label>                                                                                   
+							<input type="text" class="form-control" id="description" placeholder="description" name="description" value="这是一个方案"/>                     
+						</div>                                                                                                                                                   
+						<input type="submit" value="创建" class="btn btn-default"></input>                                                                                       
+					</form>                                                         
+				</div>                                                                        
+			</div>                                                                                
+		</div>                                                                                        
+	</div>                                                                                                
+	<!-- banner end -->                                                                                   
+</body>                                                                                                       
+</html>
