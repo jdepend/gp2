@@ -14,7 +14,7 @@
 	<dependencies>
 		<dependency>
 			<groupId>com.rofine.gp</groupId>
-			<artifactId>gp-domain</artifactId>
+			<artifactId>gp-domain-core</artifactId>
 			<version>${project.parent.version}</version>
 		</dependency>
 	</dependencies>

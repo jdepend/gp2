@@ -13,7 +13,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.rofine.gp.application.organization.target.execute.audit.ObjectTargetExecuteAuditService;
 import com.rofine.gp.application.organization.target.plan.schemeext.SchemeExt;
 import com.rofine.gp.application.organization.target.plan.schemeext.SchemeExtService;
 import com.rofine.gp.domain.organization.target.TargetException;
@@ -35,18 +34,16 @@ public class PlanAppService {
 
 	@Autowired
 	private SchemeExtService schemeExtService;
-	
+
 	@Autowired
 	private SchemeAdminDomainService schemeAdminDomainService;
-	
-	@Autowired
-	private ObjectTargetExecuteAuditService objectTargetExecuteAuditService;
 
 	/**
 	 * @throws TargetException
 	 * @roseuid 5739B670019C
 	 */
-	public void target2object(String schemeId, String targetId, List<String> objectIds) throws TargetException {
+	public void target2object(String schemeId, String targetId,
+			List<String> objectIds) throws TargetException {
 
 		List<SchemeObjectVO> objects = new ArrayList<SchemeObjectVO>();
 		SchemeObjectVO object;
@@ -70,7 +67,7 @@ public class PlanAppService {
 	public void startScheme(String schemeId) throws TargetException {
 		schemeDomainService.startScheme(schemeId);
 	}
-	
+
 	public void closeScheme(String schemeId) throws TargetException {
 		schemeDomainService.closeScheme(schemeId);
 	}
@@ -122,7 +119,8 @@ public class PlanAppService {
 			schemeIds.add(scheme.getId());
 		}
 
-		Map<String, SchemeExt> schemeExtMap = schemeExtService.listScheme(schemeIds);
+		Map<String, SchemeExt> schemeExtMap = schemeExtService
+				.listScheme(schemeIds);
 
 		List<SchemeVO> schemeList = new ArrayList<SchemeVO>();
 		SchemeVO schemeVO;
@@ -131,29 +129,27 @@ public class PlanAppService {
 			schemeList.add(schemeVO);
 		}
 
-		Page<SchemeVO> schemePage = new PageImpl<SchemeVO>(schemeList, pageable, schemes.getTotalElements());
+		Page<SchemeVO> schemePage = new PageImpl<SchemeVO>(schemeList,
+				pageable, schemes.getTotalElements());
 
 		return schemePage;
 	}
 
 	public SchemeVO getScheme(String schemeId) {
-		
+
 		Scheme scheme = schemeDomainService.getScheme(schemeId);
-		
+
 		SchemeExt schemeExt = schemeExtService.getScheme(schemeId);
-		
+
 		SchemeVO schemeVO = new SchemeVO(scheme, schemeExt);
-		
+
 		return schemeVO;
 	}
 
 	public void clearSchemes() {
-		
+
 		schemeAdminDomainService.clearSchemes();
-		
+
 		schemeExtService.clearSchemeExts();
-		
-		objectTargetExecuteAuditService.clear();
-		
 	}
 }

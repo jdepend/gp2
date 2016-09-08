@@ -17,12 +17,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.rofine.gp.application.organization.target.execute.ExecuteAppService;
-import com.rofine.gp.application.organization.target.execute.audit.AuditFillVO;
 import com.rofine.gp.domain.organization.target.TargetException;
-import com.rofine.gp.domain.organization.target.execute.EvaluateVO;
-import com.rofine.gp.domain.organization.target.execute.FillVO;
-import com.rofine.gp.domain.organization.target.execute.model.ObjectTargetExecute;
-import com.rofine.gp.domain.organization.target.scheme.model.Target;
+import com.rofine.gp.domain.organization.target.domain.EvaluateVO;
+import com.rofine.gp.domain.organization.target.domain.FillVO;
+import com.rofine.gp.domain.organization.target.domain.ObjectTargetExecuteVO;
+import com.rofine.gp.domain.organization.target.domain.TargetStatVO;
 import com.rofine.gp.platform.exception.GpException;
 import com.rofine.gp.platform.user.User;
 import com.rofine.gp.portal.security.UserUtil;
@@ -38,7 +37,7 @@ public class ExecuteController {
 	public String fill(@PathVariable String schemeId, Model model) throws GpException {
 
 		User user = UserUtil.getUser();
-		List<ObjectTargetExecute> executes = executeAppService.getFillingExecutes(schemeId, user);
+		List<ObjectTargetExecuteVO> executes = executeAppService.getFillingExecutes(schemeId, user);
 
 		model.addAttribute("executes", executes);
 
@@ -70,47 +69,12 @@ public class ExecuteController {
 		return rtn;
 	}
 
-	@RequestMapping(value = "/{schemeId}/fill/audit", method = RequestMethod.GET)
-	public String auditFill(@PathVariable String schemeId, Model model) throws GpException {
-
-		User user = UserUtil.getUser();
-		List<ObjectTargetExecute> executes = executeAppService.getAuditFillingExecutes(schemeId, user);
-
-		model.addAttribute("executes", executes);
-
-		return "fill_audit";
-	}
-
-	@RequestMapping(value = "/{schemeId}/fill/audit", method = RequestMethod.POST)
-	@ResponseBody
-	public Map<String, Object> auditFill(@PathVariable String schemeId, @RequestParam List<String> ids,
-			@RequestParam List<Boolean> results) throws GpException {
-
-		User user = UserUtil.getUser();
-		List<AuditFillVO> auditFills = new ArrayList<AuditFillVO>();
-		AuditFillVO auditFill;
-		for (int index = 0; index < ids.size(); index++) {
-			auditFill = new AuditFillVO();
-			auditFill.setExecuteId(ids.get(index));
-			auditFill.setResult(results.get(index));
-
-			auditFills.add(auditFill);
-		}
-		executeAppService.auditFill(auditFills, user);
-
-		Map<String, Object> rtn = new HashMap<String, Object>();
-
-		rtn.put("code", "1");
-		rtn.put("msg", "操作成功");
-
-		return rtn;
-	}
 
 	@RequestMapping(value = "/{schemeId}/evaluate", method = RequestMethod.GET)
 	public String evaluate(@PathVariable String schemeId, Model model) throws GpException {
 
 		User user = UserUtil.getUser();
-		List<ObjectTargetExecute> executes = executeAppService.getEvaluatingExecutes(schemeId, user);
+		List<ObjectTargetExecuteVO> executes = executeAppService.getEvaluatingExecutes(schemeId, user);
 
 		model.addAttribute("executes", executes);
 
@@ -146,7 +110,7 @@ public class ExecuteController {
 	public String list(@PathVariable String schemeId, Model model) throws GpException {
 
 		User user = UserUtil.getUser();
-		List<ObjectTargetExecute> executes = executeAppService.getOperatedExecutes(schemeId, user);
+		List<ObjectTargetExecuteVO> executes = executeAppService.getOperatedExecutes(schemeId, user);
 
 		model.addAttribute("executes", executes);
 
@@ -176,7 +140,7 @@ public class ExecuteController {
 	@RequestMapping(value = "/{schemeId}/monitor", method = RequestMethod.GET)
 	public String monitor(@PathVariable String schemeId, Model model) {
 
-		List<Target> targets = executeAppService.monitor(schemeId);
+		List<TargetStatVO> targets = executeAppService.monitor(schemeId);
 
 		model.addAttribute("targets", targets);
 

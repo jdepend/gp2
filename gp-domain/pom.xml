@@ -10,6 +10,7 @@
 	</parent>
 	<artifactId>gp-domain</artifactId>
 	<name>gp-domain</name>
+	<packaging>pom</packaging>
 	<url>http://maven.apache.org</url>
 	<dependencies>
 		<dependency>
@@ -18,4 +19,11 @@
 			<version>${project.parent.version}</version>
 		</dependency>
 	</dependencies>
+	
+	<modules>
+		<module>core</module>
+		<module>target-execute</module>
+		<module>target-base</module>
+	</modules>
+	
 </project>
