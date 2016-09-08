@@ -2,15 +2,16 @@ package com.rofine.gp.domain.organization.target.execute;
 
 import java.util.logging.Logger;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.orm.jpa.EntityScan;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.ImportResource;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+
+import com.rofine.gp.platform.bean.ApplicationContextUtil;
 
 /**
  * Run as a micro-service, registering with the Discovery Server (Eureka).
@@ -37,10 +38,13 @@ public class ObjectTargetExecuteServer {
 	 *            Program arguments - ignored.
 	 */
 	public static void main(String[] args) {
+		
 		// Tell server to look for accounts-server.properties or
-		// accounts-server.yml
+		// target-execute-server.yml
 		System.setProperty("spring.config.name", "target-execute-server");
 
-		SpringApplication.run(ObjectTargetExecuteServer.class, args);
+		ApplicationContext applicationContext = SpringApplication.run(ObjectTargetExecuteServer.class, args);
+
+		ApplicationContextUtil.setApplicationContext(applicationContext);
 	}
 }

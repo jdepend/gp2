@@ -2,15 +2,16 @@ package com.rofine.gp.portal;
 
 import java.util.logging.Logger;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.orm.jpa.EntityScan;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.ImportResource;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+
+import com.rofine.gp.platform.bean.ApplicationContextUtil;
 
 /**
  * Run as a micro-service, registering with the Discovery Server (Eureka).
@@ -41,6 +42,8 @@ public class WebServer {
 		// accounts-server.yml
 		System.setProperty("spring.config.name", "web-server");
 
-		SpringApplication.run(WebServer.class, args);
+		ApplicationContext applicationContext = SpringApplication.run(WebServer.class, args);
+		
+		ApplicationContextUtil.setApplicationContext(applicationContext);
 	}
 }
