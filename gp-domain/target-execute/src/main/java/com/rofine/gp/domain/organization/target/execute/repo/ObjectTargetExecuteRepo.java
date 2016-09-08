@@ -13,7 +13,7 @@ import com.rofine.gp.domain.organization.target.execute.model.ObjectTargetExecut
 
 public interface ObjectTargetExecuteRepo extends CrudRepository<ObjectTargetExecute, String> {
 
-	@Query("select e from ObjectTargetExecute e where e.scheme.id = :schemeId and (e.fillId = :operator or e.evaluateId = :operator)")  
+	@Query("select e from ObjectTargetExecute e where e.schemeId = :schemeId and (e.fillId = :operator or e.evaluateId = :operator)")  
 	public List<ObjectTargetExecute> findOperateExecutes(@Param("schemeId") String schemeId, @Param("operator") String operator);
 
 	@Query("select e from ObjectTargetExecute e where e.remindDate >= :sysDate and (e.state = 'filling' or e.state = 'evaluating')")  

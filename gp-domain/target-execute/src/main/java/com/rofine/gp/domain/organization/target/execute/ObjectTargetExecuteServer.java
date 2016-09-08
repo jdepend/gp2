@@ -5,9 +5,12 @@ import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.orm.jpa.EntityScan;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.ImportResource;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 /**
  * Run as a micro-service, registering with the Discovery Server (Eureka).
@@ -18,6 +21,10 @@ import org.springframework.context.annotation.ImportResource;
  * @author Paul Chapman
  */
 @EnableAutoConfiguration
+@EnableJpaRepositories(basePackages = { "com.rofine.gp.*" })
+@EntityScan(basePackages = { "com.rofine.gp.*"})
+@ComponentScan(basePackages = { "com.rofine.gp.*"})
+@ImportResource(locations={"classpath:application-bean.xml"})
 @EnableDiscoveryClient
 public class ObjectTargetExecuteServer {
 
