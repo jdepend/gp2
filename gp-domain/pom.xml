@@ -12,14 +12,7 @@
 	<name>gp-domain</name>
 	<packaging>pom</packaging>
 	<url>http://maven.apache.org</url>
-	<dependencies>
-		<dependency>
-			<groupId>com.rofine.gp</groupId>
-			<artifactId>gp-platform</artifactId>
-			<version>${project.parent.version}</version>
-		</dependency>
-	</dependencies>
-	
+
 	<modules>
 		<module>core</module>
 		<module>target-execute</module>
