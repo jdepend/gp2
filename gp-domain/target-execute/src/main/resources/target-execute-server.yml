@@ -8,6 +8,20 @@ spring:
     cache: false             # Allow Thymeleaf templates to be reloaded at runtime
     prefix: classpath:/target-execute-server/templates/    # Trailing / mandatory
                              # Template location for this application only
+  datasource:
+    url: jdbc:mysql://localhost:3306/gp?useUnicode=true&characterEncoding=utf8&characterSetResults=utf8
+    username: root
+    password: mysql
+    driverClassName: com.mysql.jdbc.Driver
+  jpa:  
+    database: MYSQL
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+      naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect
 
 # Map the error path to error template (for Thymeleaf)
 error:
@@ -35,7 +49,3 @@ eureka:
 #     NOTE-2: Syntax ${x:${y}} = use $x if set, otherwise use $y
 #   metadataMap:
 #     instanceId: ${spring.application.name}:${spring.application.instance_id:${server.port}}
-      
-
-
-
