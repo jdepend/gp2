@@ -12,12 +12,12 @@ import javax.persistence.Table;
 import com.rofine.gp.domain.organization.target.TargetException;
 import com.rofine.gp.domain.organization.target.domain.ObjectTargetVO;
 import com.rofine.gp.domain.organization.target.execute.ObjectTargetExecuteDomainStub;
-import com.rofine.gp.platform.entity.IdEntity;
+import com.rofine.gp.platform.entity.IdEntity2;
 
 @Entity
 @Table(name = "domain_object_target")
-public class ObjectTarget extends IdEntity {
-
+public class ObjectTarget extends IdEntity2 {
+	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "scheme_id")
 	private Scheme scheme;
@@ -144,7 +144,21 @@ public class ObjectTarget extends IdEntity {
 	}
 
 	public ObjectTargetVO toObjectTargetVO() {
-		return null;
+		ObjectTargetVO objectTargetVO = new ObjectTargetVO();
+
+		objectTargetVO.setId(getId());
+		objectTargetVO.setObjectCode(objectCode);		
+		objectTargetVO.setObjectType(objectType);
+		objectTargetVO.setPlanEvaluateId(target.getEvaluateId());
+		objectTargetVO.setPlanEvaluateRoleId(target.getEvaluateRoleId());
+		objectTargetVO.setPlanFillId(fillId);
+		objectTargetVO.setPlanFillRoleId(roleId);
+		objectTargetVO.setSchemeId(scheme.getId());
+		objectTargetVO.setSubjectId(target.getSubjectId());
+		objectTargetVO.setTargetId(target.getId());
+		objectTargetVO.setTargetName(target.getName());
+		
+		return objectTargetVO;
 	}
 
 	public void save() {
