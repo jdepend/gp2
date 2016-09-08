@@ -6,11 +6,15 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.orm.jpa.EntityScan;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.ImportResource;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.web.client.RestTemplate;
 
+import com.rofine.gp.domain.organization.target.execute.ObjectTargetExecuteDomainStub;
 import com.rofine.gp.platform.bean.ApplicationContextUtil;
 
 /**
@@ -28,6 +32,8 @@ import com.rofine.gp.platform.bean.ApplicationContextUtil;
 @ImportResource(locations={"classpath:spring-shiro.xml"})
 @EnableDiscoveryClient
 public class WebServer {
+	
+	public static final String TARGET_EXECUTE_SERVICE_URL = "http://TARGET_EXECUTE_SERVICE";
 
 	protected Logger logger = Logger.getLogger(WebServer.class.getName());
 
@@ -45,5 +51,27 @@ public class WebServer {
 		ApplicationContext applicationContext = SpringApplication.run(WebServer.class, args);
 		
 		ApplicationContextUtil.setApplicationContext(applicationContext);
+	}
+	
+	/**
+	 * A customized RestTemplate that has the ribbon load balancer build in.
+	 * Note that prior to the "Brixton" 
+	 * 
+	 * @return
+	 */
+	@LoadBalanced
+	@Bean
+	public RestTemplate restTemplate() {
+		return new RestTemplate();
+	}
+	
+	/**
+	 * The AccountService encapsulates the interaction with the micro-service.
+	 * 
+	 * @return A new service instance.
+	 */
+	@Bean
+	public ObjectTargetExecuteDomainStub objectTargetExecuteDomainStub() {
+		return new ObjectTargetExecuteDomainStub(TARGET_EXECUTE_SERVICE_URL);
 	}
 }

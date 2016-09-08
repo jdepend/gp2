@@ -10,6 +10,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.rofine.gp.domain.organization.target.TargetException;
+import com.rofine.gp.domain.organization.target.domain.ObjectTargetVO;
+import com.rofine.gp.domain.organization.target.execute.ObjectTargetExecuteDomainStub;
 import com.rofine.gp.platform.entity.IdEntity;
 
 @Entity
@@ -51,16 +53,8 @@ public class ObjectTarget extends IdEntity {
 	 * @roseuid 573A70BC0137
 	 */
 	public void createExecutes() throws TargetException {
-
-//		objectTargetExecutes = new ArrayList<ObjectTargetExecute>();
-//
-//		TargetFrequencyType targetFrequencyType = TargetFrequencyTypeFactory.create(this.target.getFrequencyType());
-//
-//		List<TargetFrequency> targetFrequencys = targetFrequencyType.createTargetFrequencys();
-//		for (TargetFrequency targetFrequency : targetFrequencys) {
-//			objectTargetExecutes.add(new ObjectTargetExecute(targetFrequency, this, target));
-//		}
-
+		ObjectTargetExecuteDomainStub.getBean().createExecutes(
+				this.toObjectTargetVO(), this.target.getFrequencyType());
 	}
 
 	/**
@@ -147,6 +141,10 @@ public class ObjectTarget extends IdEntity {
 
 	public void setFillId(String fillId) {
 		this.fillId = fillId;
+	}
+
+	public ObjectTargetVO toObjectTargetVO() {
+		return null;
 	}
 
 	public void save() {
