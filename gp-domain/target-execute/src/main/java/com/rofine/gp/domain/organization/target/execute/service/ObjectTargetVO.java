@@ -1,4 +1,4 @@
-package com.rofine.gp.domain.organization.target.execute;
+package com.rofine.gp.domain.organization.target.execute.service;
 
 public class ObjectTargetVO {
 

@@ -9,7 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 import com.rofine.gp.domain.organization.target.domain.ObjectTargetExecuteConstant;
-import com.rofine.gp.domain.organization.target.execute.ObjectTargetVO;
+import com.rofine.gp.domain.organization.target.execute.service.ObjectTargetVO;
 import com.rofine.gp.domain.organization.target.target.frequency.TargetFrequency;
 import com.rofine.gp.platform.entity.IdEntity;
 
