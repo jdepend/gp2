@@ -32,8 +32,6 @@ import com.rofine.gp.platform.bean.ApplicationContextUtil;
 @ImportResource(locations={"classpath:spring-shiro.xml"})
 @EnableDiscoveryClient
 public class WebServer {
-	
-	public static final String TARGET_EXECUTE_SERVICE_URL = "http://TARGET_EXECUTE_SERVICE";
 
 	protected Logger logger = Logger.getLogger(WebServer.class.getName());
 
@@ -51,27 +49,5 @@ public class WebServer {
 		ApplicationContext applicationContext = SpringApplication.run(WebServer.class, args);
 		
 		ApplicationContextUtil.setApplicationContext(applicationContext);
-	}
-	
-	/**
-	 * A customized RestTemplate that has the ribbon load balancer build in.
-	 * Note that prior to the "Brixton" 
-	 * 
-	 * @return
-	 */
-	@LoadBalanced
-	@Bean
-	public RestTemplate restTemplate() {
-		return new RestTemplate();
-	}
-	
-	/**
-	 * The AccountService encapsulates the interaction with the micro-service.
-	 * 
-	 * @return A new service instance.
-	 */
-	@Bean
-	public ObjectTargetExecuteDomainStub objectTargetExecuteDomainStub() {
-		return new ObjectTargetExecuteDomainStub(TARGET_EXECUTE_SERVICE_URL);
 	}
 }
