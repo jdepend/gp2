@@ -74,6 +74,7 @@ public class ObjectTargetExecute extends IdEntity {
 	@Column(name = "plan_evaluate_role_id", length = 36)
 	private String planEvaluateRoleId;
 
+	@Column(name = "object_target_id", length = 36)
 	private String objectTargetId;
 
 	@Column(name = "object_code", length = 36)
@@ -82,8 +83,10 @@ public class ObjectTargetExecute extends IdEntity {
 	@Column(name = "object_type", length = 32)
 	private String objectType;
 
+	@Column(name = "scheme_id", length = 36)
 	private String schemeId;
 
+	@Column(name = "target_id", length = 36)
 	private String targetId;
 
 	public ObjectTargetExecute() {
