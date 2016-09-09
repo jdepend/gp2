@@ -1,3 +1,4 @@
+DROP TABLE app_user;
 DROP TABLE app_target_execute_audit;
 DROP TABLE app_notification;
 DROP TABLE app_scheme_ext;
