@@ -13,7 +13,7 @@ import com.rofine.gp.domain.organization.target.execute.ObjectTargetExecuteDomai
 public class WebConfig {
 	
 	
-	public static final String TARGET_EXECUTE_SERVICE_URL = "http://TARGET_EXECUTE_SERVICE";
+	public static final String TARGET_EXECUTE_SERVICE_URL = "http://TARGET-EXECUTE-SERVICE";
 	
 	@Bean
 	public FilterRegistrationBean filterRegistrationBean() {
