@@ -9,7 +9,7 @@ spring:
     prefix: classpath:/target-execute-server/templates/    # Trailing / mandatory
                              # Template location for this application only
   datasource:
-    url: jdbc:mysql://localhost:3306/gp?useUnicode=true&characterEncoding=utf8&characterSetResults=utf8
+    url: jdbc:mysql://localhost:3306/gp2-target-execute?useUnicode=true&characterEncoding=utf8&characterSetResults=utf8
     username: root
     password: mysql
     driverClassName: com.mysql.jdbc.Driver
