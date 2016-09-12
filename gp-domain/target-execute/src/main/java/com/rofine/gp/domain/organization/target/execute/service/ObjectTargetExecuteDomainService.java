@@ -62,6 +62,16 @@ public class ObjectTargetExecuteDomainService {
 		executeRepo.save(objectTargetExecutes);
 	}
 
+	public void startExecutes(String schemeId) {
+		List<ObjectTargetExecute> objectTargetExecutes = executeRepo.findBySchemeId(schemeId);
+		
+		for(ObjectTargetExecute execute : objectTargetExecutes){
+			execute.start();
+		}
+		
+		executeRepo.save(objectTargetExecutes);
+		
+	}
 	public List<ObjectTargetExecute> getFillingExecutes(String schemeId,
 			User user) {
 		return loader.getFillingExecutes(schemeId, user);
@@ -204,5 +214,7 @@ public class ObjectTargetExecuteDomainService {
 
 		return targetStatVOMap;
 	}
+
+
 
 }

@@ -49,6 +49,12 @@ public class ObjectTargetExecuteDomainStub {
 				ObjectTargetVO.class, frequencyType);
 	}
 
+	public void startExecutes(String schemeId) {
+		restTemplate.postForObject(this.serviceUrl
+				+ "/start/executes/scheme/{schemeId}", null, String.class, schemeId);
+
+	}
+
 	public List<ObjectTargetExecuteVO> getFillingExecutes(String schemeId,
 			User user) {
 		return null;

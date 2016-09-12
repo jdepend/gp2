@@ -19,8 +19,12 @@ public class ObjectTargetExecuteDomainController {
 
 	@RequestMapping(value = "/create/executes/{frequencyType}", method = RequestMethod.POST)
 	public void create(@PathVariable("frequencyType") String frequencyType,
-			@RequestBody ObjectTargetVO objectTarget)
-			throws TargetException {
+			@RequestBody ObjectTargetVO objectTarget) throws TargetException {
 		executeDomainService.createExecutes(frequencyType, objectTarget);
+	}
+
+	@RequestMapping(value = "/start/executes/scheme/{schemeId}", method = RequestMethod.POST)
+	public void start(@PathVariable("schemeId") String schemeId) throws TargetException {
+		executeDomainService.startExecutes(schemeId);
 	}
 }

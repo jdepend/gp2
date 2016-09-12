@@ -17,6 +17,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 import com.rofine.gp.domain.organization.target.TargetException;
 import com.rofine.gp.domain.organization.target.domain.ObjectTargetExecuteConstant;
+import com.rofine.gp.domain.organization.target.execute.ObjectTargetExecuteDomainStub;
 import com.rofine.gp.domain.organization.target.scheme.SchemeObjectVO;
 import com.rofine.gp.platform.entity.IdEntity;
 import com.rofine.gp.platform.exception.GpException;
@@ -152,13 +153,7 @@ public class Scheme extends IdEntity {
 	protected void doStart() {
 		this.state = State_Started;
 
-//		for (Target target : targets) {
-//			for (ObjectTarget objectTarget : target.getObjectTargets()) {
-//				for (ObjectTargetExecute execute : objectTarget.getObjectTargetExecutes()) {
-//					execute.start();
-//				}
-//			}
-//		}
+		ObjectTargetExecuteDomainStub.getBean().startExecutes(this.getId());
 
 		this.save();
 
