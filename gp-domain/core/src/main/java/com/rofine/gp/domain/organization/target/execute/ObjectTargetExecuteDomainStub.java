@@ -21,6 +21,7 @@ import com.rofine.gp.domain.organization.target.scheme.model.ObjectTarget;
 import com.rofine.gp.platform.bean.ApplicationContextUtil;
 import com.rofine.gp.platform.user.User;
 import com.rofine.gp.platform.util.DateUtil;
+import com.rofine.gp.platform.util.JsonUtil;
 
 @Service
 public class ObjectTargetExecuteDomainStub {
@@ -59,13 +60,14 @@ public class ObjectTargetExecuteDomainStub {
 	}
 
 	public List<ObjectTargetExecuteVO> getFillingExecutes(String schemeId,
-			User user) {
-		
+			User user) throws Exception {
+
 		Map<String, Object> params = new HashMap<String, Object>();
-		params.put("user.id", user.getId());
-		
+		params.put("schemeId", schemeId);
+		params.put("user", JsonUtil.toJson(user));
+
 		return restTemplate.getForObject(this.serviceUrl
-				+ "/scheme/{schemeId}/fill", List.class, schemeId, params);
+				+ "/scheme/{schemeId}/fill?user={user}", List.class, params);
 	}
 
 	public List<ObjectTargetExecuteVO> getEvaluatingExecutes(String schemeId,
