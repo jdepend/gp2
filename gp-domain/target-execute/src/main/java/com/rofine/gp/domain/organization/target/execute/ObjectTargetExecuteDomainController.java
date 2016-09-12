@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.rofine.gp.domain.organization.target.TargetException;
+import com.rofine.gp.domain.organization.target.domain.FillVO;
 import com.rofine.gp.domain.organization.target.domain.ObjectTargetExecuteVO;
 import com.rofine.gp.domain.organization.target.domain.ObjectTargetVO;
 import com.rofine.gp.domain.organization.target.domain.UserImpl;
@@ -46,11 +47,21 @@ public class ObjectTargetExecuteDomainController {
 		User user = JsonUtil.toObject(userInfo, UserImpl.class);
 		List<ObjectTargetExecute> exexutes = executeDomainService
 				.getFillingExecutes(schemeId, user);
-		List<ObjectTargetExecuteVO> executeVOs = new ArrayList<ObjectTargetExecuteVO>(exexutes.size());
+		List<ObjectTargetExecuteVO> executeVOs = new ArrayList<ObjectTargetExecuteVO>(
+				exexutes.size());
 		for (ObjectTargetExecute execute : exexutes) {
 			executeVOs.add(execute.toVO());
 		}
 
 		return executeVOs;
+	}
+
+	@RequestMapping(value = "/scheme/{schemeId}/fill", method = RequestMethod.POST)
+	public void create(@PathVariable("schemeId") String schemeId,
+			@RequestBody List<FillVO> fills,
+			@RequestParam(required = false, value = "user") String userInfo)
+			throws TargetException {
+		User user = JsonUtil.toObject(userInfo, UserImpl.class);
+		executeDomainService.fill(fills, user);
 	}
 }

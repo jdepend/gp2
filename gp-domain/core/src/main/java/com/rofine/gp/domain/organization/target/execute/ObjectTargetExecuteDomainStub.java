@@ -85,7 +85,19 @@ public class ObjectTargetExecuteDomainStub {
 		return null;
 	}
 
-	public void fill(List<FillVO> fills, User user) throws TargetException {
+	public void fill(String schemeId, List<FillVO> fills, User user)
+			throws TargetException {
+		try {
+			Map<String, Object> params = new HashMap<String, Object>();
+			params.put("schemeId", schemeId);
+			params.put("user", JsonUtil.toJson(user));
+
+			restTemplate.postForObject(this.serviceUrl
+					+ "/scheme/{schemeId}/fill?user={user}", fills, List.class,
+					params);
+		} catch (Exception e) {
+			throw new TargetException(e);
+		}
 
 	}
 
