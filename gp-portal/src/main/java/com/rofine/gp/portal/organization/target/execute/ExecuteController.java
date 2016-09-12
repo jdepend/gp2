@@ -59,7 +59,7 @@ public class ExecuteController {
 
 			fills.add(fill);
 		}
-		executeAppService.fill(fills, user);
+		executeAppService.fill(schemeId, fills, user);
 
 		Map<String, Object> rtn = new HashMap<String, Object>();
 
