@@ -31,7 +31,7 @@ public class ExecuteAppService {
 	private NotificationService notificationService;
 
 	public List<ObjectTargetExecuteVO> getFillingExecutes(String schemeId,
-			User user) {
+			User user) throws Exception {
 		return executeDomainStub.getFillingExecutes(schemeId, user);
 	}
 
@@ -40,8 +40,9 @@ public class ExecuteAppService {
 		return executeDomainStub.getEvaluatingExecutes(schemeId, user);
 	}
 
-	public void fill(List<FillVO> fills, User user) throws TargetException {
-		executeDomainStub.fill(fills, user);
+	public void fill(String schemeId, List<FillVO> fills, User user)
+			throws TargetException {
+		executeDomainStub.fill(schemeId, fills, user);
 	}
 
 	/**
