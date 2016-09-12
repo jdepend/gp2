@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 import com.rofine.gp.domain.organization.target.domain.ObjectTargetExecuteConstant;
+import com.rofine.gp.domain.organization.target.domain.ObjectTargetExecuteVO;
 import com.rofine.gp.domain.organization.target.domain.ObjectTargetVO;
 import com.rofine.gp.domain.organization.target.target.frequency.TargetFrequency;
 import com.rofine.gp.platform.entity.IdEntity;
@@ -332,6 +333,40 @@ public class ObjectTargetExecute extends IdEntity {
 
 	public void setTargetId(String targetId) {
 		this.targetId = targetId;
+	}
+	
+	public ObjectTargetExecuteVO toVO(){
+		
+		ObjectTargetExecuteVO vo = new ObjectTargetExecuteVO();
+		
+		vo.setEndDate(endDate);
+		vo.setEvaluateDate(evaluateDate);
+		vo.setEvaluateId(evaluateId);
+		vo.setEvaluateScore(evaluateScore);
+		vo.setFillDate(fillDate);
+		vo.setFillId(fillId);
+		vo.setFrequencyCode(frequencyCode);
+		vo.setFrequencyName(frequencyName);
+		vo.setId(this.getId());
+		vo.setLimitDate(limitDate);
+		vo.setObjectCode(objectCode);
+		vo.setObjectTargetId(objectTargetId);
+		vo.setObjectType(objectType);
+		vo.setPlanEvaluateId(planEvaluateId);
+		vo.setPlanEvaluateRoleId(planEvaluateRoleId);
+		vo.setPlanFillId(planFillId);
+		vo.setPlanFillRoleId(planFillRoleId);
+		vo.setObjectType(objectType);
+		vo.setRemindDate(remindDate);
+		vo.setSchemeId(schemeId);
+		vo.setStartDate(startDate);
+		vo.setState(state);
+		vo.setSubjectId(subjectId);
+		vo.setTargetId(objectTargetId);
+		vo.setTargetName(targetName);
+	
+		return vo;
+		
 	}
 
 }

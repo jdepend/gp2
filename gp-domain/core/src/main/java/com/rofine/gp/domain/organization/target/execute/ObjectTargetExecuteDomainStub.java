@@ -1,7 +1,9 @@
 package com.rofine.gp.domain.organization.target.execute;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,13 +53,19 @@ public class ObjectTargetExecuteDomainStub {
 
 	public void startExecutes(String schemeId) {
 		restTemplate.postForObject(this.serviceUrl
-				+ "/start/executes/scheme/{schemeId}", null, String.class, schemeId);
+				+ "/start/executes/scheme/{schemeId}", null, String.class,
+				schemeId);
 
 	}
 
 	public List<ObjectTargetExecuteVO> getFillingExecutes(String schemeId,
 			User user) {
-		return null;
+		
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("user.id", user.getId());
+		
+		return restTemplate.getForObject(this.serviceUrl
+				+ "/scheme/{schemeId}/fill", List.class, schemeId, params);
 	}
 
 	public List<ObjectTargetExecuteVO> getEvaluatingExecutes(String schemeId,
