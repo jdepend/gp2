@@ -19,7 +19,7 @@
 				</tr>
 				<tr th:each="execute,executeStat : ${executes}">
 					<td><input type="hidden" name="ids" th:value="${execute.id}" /></td>
-					<td th:text="${execute.frequencyName}"></td>
+					<td th:text="${execute.targetName}"></td>
 					<td th:text="${execute.objectCode}"></td>
 					<td><input type="text" name="scores"/></td>
 				</tr>

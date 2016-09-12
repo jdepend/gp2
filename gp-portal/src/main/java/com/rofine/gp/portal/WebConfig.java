@@ -11,27 +11,26 @@ import com.rofine.gp.domain.organization.target.execute.ObjectTargetExecuteDomai
 
 @Configuration
 public class WebConfig {
-	
-	
+
 	public static final String TARGET_EXECUTE_SERVICE_URL = "http://TARGET-EXECUTE-SERVICE";
-	
+
 	@Bean
 	public FilterRegistrationBean filterRegistrationBean() {
 		FilterRegistrationBean filterRegistrationBean = new FilterRegistrationBean();
-		
+
 		DelegatingFilterProxy proxy = new DelegatingFilterProxy("shiroFilter");
 		proxy.setTargetFilterLifecycle(true);
-		
+
 		filterRegistrationBean.setFilter(proxy);
 		filterRegistrationBean.setEnabled(true);
 		filterRegistrationBean.addUrlPatterns("/*");
-		
+
 		return filterRegistrationBean;
 	}
-	
+
 	/**
 	 * A customized RestTemplate that has the ribbon load balancer build in.
-	 * Note that prior to the "Brixton" 
+	 * Note that prior to the "Brixton"
 	 * 
 	 * @return
 	 */
@@ -40,7 +39,7 @@ public class WebConfig {
 	public RestTemplate restTemplate() {
 		return new RestTemplate();
 	}
-	
+
 	/**
 	 * The AccountService encapsulates the interaction with the micro-service.
 	 * 

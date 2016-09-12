@@ -34,7 +34,7 @@ public class ExecuteController {
 	private ExecuteAppService executeAppService;
 
 	@RequestMapping(value = "/{schemeId}/fill", method = RequestMethod.GET)
-	public String fill(@PathVariable String schemeId, Model model) throws GpException {
+	public String fill(@PathVariable String schemeId, Model model) throws Exception {
 
 		User user = UserUtil.getUser();
 		List<ObjectTargetExecuteVO> executes = executeAppService.getFillingExecutes(schemeId, user);
