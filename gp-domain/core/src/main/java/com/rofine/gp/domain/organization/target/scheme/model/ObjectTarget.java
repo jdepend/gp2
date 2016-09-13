@@ -17,7 +17,7 @@ import com.rofine.gp.platform.entity.IdEntity2;
 @Entity
 @Table(name = "domain_object_target")
 public class ObjectTarget extends IdEntity2 {
-	
+
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "scheme_id")
 	private Scheme scheme;
@@ -53,8 +53,7 @@ public class ObjectTarget extends IdEntity2 {
 	 * @roseuid 573A70BC0137
 	 */
 	public void createExecutes() throws TargetException {
-		ObjectTargetExecuteDomainStub.getBean().createExecutes(
-				this.toObjectTargetVO(), this.target.getFrequencyType());
+		ObjectTargetExecuteDomainStub.getBean().createExecutes(this.target.getFrequencyType(), this.toObjectTargetVO());
 	}
 
 	/**
@@ -147,7 +146,7 @@ public class ObjectTarget extends IdEntity2 {
 		ObjectTargetVO objectTargetVO = new ObjectTargetVO();
 
 		objectTargetVO.setId(getId());
-		objectTargetVO.setObjectCode(objectCode);		
+		objectTargetVO.setObjectCode(objectCode);
 		objectTargetVO.setObjectType(objectType);
 		objectTargetVO.setPlanEvaluateId(target.getEvaluateId());
 		objectTargetVO.setPlanEvaluateRoleId(target.getEvaluateRoleId());
@@ -157,7 +156,7 @@ public class ObjectTarget extends IdEntity2 {
 		objectTargetVO.setSubjectId(target.getSubjectId());
 		objectTargetVO.setTargetId(target.getId());
 		objectTargetVO.setTargetName(target.getName());
-		
+
 		return objectTargetVO;
 	}
 

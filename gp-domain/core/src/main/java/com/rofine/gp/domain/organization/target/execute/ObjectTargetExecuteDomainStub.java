@@ -14,17 +14,17 @@ import org.springframework.web.client.RestTemplate;
 import com.rofine.gp.domain.organization.target.TargetException;
 import com.rofine.gp.domain.organization.target.domain.EvaluateVO;
 import com.rofine.gp.domain.organization.target.domain.FillVO;
+import com.rofine.gp.domain.organization.target.domain.ObjectTargetExecuteDomainService;
 import com.rofine.gp.domain.organization.target.domain.ObjectTargetExecuteVO;
 import com.rofine.gp.domain.organization.target.domain.ObjectTargetVO;
 import com.rofine.gp.domain.organization.target.domain.TargetStatVO;
-import com.rofine.gp.domain.organization.target.scheme.model.ObjectTarget;
 import com.rofine.gp.platform.bean.ApplicationContextUtil;
 import com.rofine.gp.platform.user.User;
 import com.rofine.gp.platform.util.DateUtil;
 import com.rofine.gp.platform.util.JsonUtil;
 
 @Service
-public class ObjectTargetExecuteDomainStub {
+public class ObjectTargetExecuteDomainStub implements ObjectTargetExecuteDomainService{
 
 	@Autowired
 	@LoadBalanced
@@ -34,8 +34,8 @@ public class ObjectTargetExecuteDomainStub {
 
 	protected Logger logger = Logger.getLogger(ObjectTargetExecuteDomainStub.class.getName());
 
-	public static ObjectTargetExecuteDomainStub getBean() {
-		return (ObjectTargetExecuteDomainStub) ApplicationContextUtil.getApplicationContext().getBean(
+	public static ObjectTargetExecuteDomainService getBean() {
+		return (ObjectTargetExecuteDomainService) ApplicationContextUtil.getApplicationContext().getBean(
 				"objectTargetExecuteDomainStub");
 	}
 
@@ -43,7 +43,7 @@ public class ObjectTargetExecuteDomainStub {
 		this.serviceUrl = serviceUrl.startsWith("http") ? serviceUrl : "http://" + serviceUrl;
 	}
 
-	public void createExecutes(ObjectTargetVO objectTarget, String frequencyType) {
+	public void createExecutes(String frequencyType, ObjectTargetVO objectTarget) throws TargetException{
 		restTemplate.postForObject(this.serviceUrl + "/create/executes/{frequencyType}", objectTarget,
 				ObjectTargetVO.class, frequencyType);
 	}
@@ -137,5 +137,4 @@ public class ObjectTargetExecuteDomainStub {
 
 		return null;
 	}
-
 }
