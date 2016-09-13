@@ -1,22 +1,15 @@
 package com.rofine.gp.platform.util;
 
-import java.io.StringWriter;
-import java.util.Iterator;
 import java.util.List;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 public class JsonUtil {
 
-	public static String toJson(Object object) throws Exception {
-		// 将一个Java对象转换成JSON
-		StringWriter writer = new StringWriter();
-		ObjectMapper mapper = new ObjectMapper();
-		mapper.writeValue(writer, object);
-		return writer.toString();
+	public static String toJson(Object object){
+		JSONObject json = JSONObject.fromObject(object);
+		return json.toString();
 	}
 
 	public static <T> T toObject(String json, Class<T> type) {
