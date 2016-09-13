@@ -345,6 +345,7 @@ public class ObjectTargetExecute extends IdEntity {
 		vo.setEvaluateScore(evaluateScore);
 		vo.setFillDate(fillDate);
 		vo.setFillId(fillId);
+		vo.setFillScore(fillScore);
 		vo.setFrequencyCode(frequencyCode);
 		vo.setFrequencyName(frequencyName);
 		vo.setId(this.getId());

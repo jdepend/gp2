@@ -2,6 +2,7 @@
 
 package com.rofine.gp.domain.organization.target.scheme;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.rofine.gp.domain.organization.target.TargetException;
+import com.rofine.gp.domain.organization.target.domain.EvaluateVO;
+import com.rofine.gp.domain.organization.target.domain.ObjectTargetExecuteDomainService;
 import com.rofine.gp.domain.organization.target.domain.ObjectTargetExecuteVO;
 import com.rofine.gp.domain.organization.target.scheme.event.SchemeCloseBeforeEvent;
 import com.rofine.gp.domain.organization.target.scheme.event.SchemeClosedEvent;
@@ -21,10 +24,12 @@ import com.rofine.gp.domain.organization.target.scheme.event.SchemeStartedEvent;
 import com.rofine.gp.domain.organization.target.scheme.event.Target2ObjectCreatedEvent;
 import com.rofine.gp.domain.organization.target.scheme.event.TargetUpdateBeforeEvent;
 import com.rofine.gp.domain.organization.target.scheme.event.TargetUpdatedEvent;
+import com.rofine.gp.domain.organization.target.scheme.model.ObjectTarget;
 import com.rofine.gp.domain.organization.target.scheme.model.Scheme;
 import com.rofine.gp.domain.organization.target.scheme.model.SchemeObject;
 import com.rofine.gp.domain.organization.target.scheme.model.Target;
 import com.rofine.gp.domain.organization.target.scheme.model.TargetType;
+import com.rofine.gp.domain.organization.target.scheme.repo.ObjectTargetRepo;
 import com.rofine.gp.domain.organization.target.scheme.repo.SchemeRepo;
 import com.rofine.gp.domain.organization.target.scheme.repo.TargetRepo;
 import com.rofine.gp.domain.organization.target.scheme.repo.TargetTypeRepo;
@@ -48,13 +53,19 @@ public class SchemeDomainService {
 	private TargetRepo targetRepo;
 
 	@Autowired
+	private ObjectTargetRepo objectTargetRepo;
+
+	@Autowired
 	private ApplicationContext applicationContext;
-	
+
 	@Autowired
 	private ObjectTargetScoreCalculator objectTargetScoreCalculator;
-	
+
 	@Autowired
 	private ObjectScoreCalculator objectScoreCalculator;
+
+	@Autowired
+	private ObjectTargetExecuteDomainService objectTargetExecuteDomainService;
 
 	/**
 	 * @param schemeId
@@ -80,29 +91,48 @@ public class SchemeDomainService {
 	 * @throws TargetException
 	 * @roseuid 573ADFCF01DA
 	 */
-	public void syncScore(ObjectTargetExecuteVO execute) throws TargetException {
+	public void syncScore(List<EvaluateVO> evaluates) throws TargetException {
 
-//		objectTargetScoreCalculator.calculate(execute.getObjectTarget());
-//
-//		execute.getObjectTarget().save();
-//
-//		objectScoreCalculator.calculate(execute.getObjectTarget().getObject());
-//
-//		execute.getObjectTarget().getObject().save();
+		List<String> executeIds = new ArrayList<String>();
+		evaluates.forEach(evaluate -> {
+			executeIds.add(evaluate.getExecuteId());
+		});
+
+		List<ObjectTargetExecuteVO> executes = objectTargetExecuteDomainService.getExecutesByIds(executeIds);
+
+		List<String> objectTargetIds = new ArrayList<String>();
+		executes.forEach(evaluate -> {
+			if (!objectTargetIds.contains(evaluate.getObjectTargetId())) {
+				objectTargetIds.add(evaluate.getObjectTargetId());
+			}
+		});
+
+		for (String objectTargetId : objectTargetIds) {
+
+			ObjectTarget objectTarget = objectTargetRepo.findOne(objectTargetId);
+
+			objectTargetScoreCalculator.calculate(objectTarget);
+
+			objectTarget.save();
+
+			objectScoreCalculator.calculate(objectTarget.getObject());
+
+			objectTarget.getObject().save();
+		}
 	}
 
 	/**
 	 * @param schemeId
-	 * @throws TargetException 
+	 * @throws TargetException
 	 * @roseuid 573BC90901EE
 	 */
 	public List<TargetType> getTargetTypes(String schemeId) throws TargetException {
-		
+
 		Scheme scheme = this.schemeRepo.findOne(schemeId);
 		if (scheme == null) {
 			throw new TargetException("schemeId=" + schemeId + "不存在");
 		}
-		
+
 		return scheme.getTargetTypes();
 	}
 
@@ -197,7 +227,7 @@ public class SchemeDomainService {
 		}
 
 	}
-	
+
 	/**
 	 * @param schemeId
 	 * @throws TargetException
@@ -215,9 +245,9 @@ public class SchemeDomainService {
 
 		applicationContext.publishEvent(new SchemeStartedEvent(scheme));
 	}
-	
+
 	public void closeScheme(String schemeId) throws TargetException {
-		
+
 		Scheme scheme = this.schemeRepo.findOne(schemeId);
 		if (scheme == null) {
 			throw new TargetException("schemeId=" + schemeId + "不存在");

@@ -59,6 +59,7 @@ public class ExecuteAppService {
 	 */
 	public void evaluate(String schemeId, List<EvaluateVO> evaluates, User user) throws TargetException {
 		objectTargetExecuteDomainService.evaluate(schemeId, evaluates, user);
+		schemeDomainService.syncScore(evaluates);
 	}
 
 	public List<ObjectTargetExecuteVO> getOperatedExecutes(String schemeId, User user) throws TargetException {

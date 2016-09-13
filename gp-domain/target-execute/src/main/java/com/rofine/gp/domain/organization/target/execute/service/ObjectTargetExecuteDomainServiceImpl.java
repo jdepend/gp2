@@ -97,12 +97,7 @@ public class ObjectTargetExecuteDomainServiceImpl implements ObjectTargetExecute
 	public List<ObjectTargetExecuteVO> getFillingExecutes(String schemeId, User user) throws TargetException {
 		List<ObjectTargetExecute> exexutes = loader.getFillingExecutes(schemeId, user);
 
-		List<ObjectTargetExecuteVO> executeVOs = new ArrayList<ObjectTargetExecuteVO>(exexutes.size());
-		for (ObjectTargetExecute execute : exexutes) {
-			executeVOs.add(execute.toVO());
-		}
-
-		return executeVOs;
+		return ObjectTagetExecuteAssembler.toVO(exexutes);
 	}
 
 	/*
@@ -116,12 +111,7 @@ public class ObjectTargetExecuteDomainServiceImpl implements ObjectTargetExecute
 	public List<ObjectTargetExecuteVO> getEvaluatingExecutes(String schemeId, User user) throws TargetException {
 		List<ObjectTargetExecute> exexutes = loader.getEvaluatingExecutes(schemeId, user);
 
-		List<ObjectTargetExecuteVO> executeVOs = new ArrayList<ObjectTargetExecuteVO>(exexutes.size());
-		for (ObjectTargetExecute execute : exexutes) {
-			executeVOs.add(execute.toVO());
-		}
-
-		return executeVOs;
+		return ObjectTagetExecuteAssembler.toVO(exexutes);
 	}
 
 	/*
@@ -135,12 +125,7 @@ public class ObjectTargetExecuteDomainServiceImpl implements ObjectTargetExecute
 	public List<ObjectTargetExecuteVO> getOperatedExecutes(String schemeId, User user) throws TargetException {
 		List<ObjectTargetExecute> exexutes = executeRepo.findOperateExecutes(schemeId, user.getId());
 
-		List<ObjectTargetExecuteVO> executeVOs = new ArrayList<ObjectTargetExecuteVO>(exexutes.size());
-		for (ObjectTargetExecute execute : exexutes) {
-			executeVOs.add(execute.toVO());
-		}
-
-		return executeVOs;
+		return ObjectTagetExecuteAssembler.toVO(exexutes);
 	}
 
 	/*
@@ -154,12 +139,7 @@ public class ObjectTargetExecuteDomainServiceImpl implements ObjectTargetExecute
 		Date sysDate = DateUtil.getSysDate();
 		List<ObjectTargetExecute> exexutes = executeRepo.findRemindExecutes(sysDate);
 
-		List<ObjectTargetExecuteVO> executeVOs = new ArrayList<ObjectTargetExecuteVO>(exexutes.size());
-		for (ObjectTargetExecute execute : exexutes) {
-			executeVOs.add(execute.toVO());
-		}
-
-		return executeVOs;
+		return ObjectTagetExecuteAssembler.toVO(exexutes);
 	}
 
 	/*
@@ -228,12 +208,14 @@ public class ObjectTargetExecuteDomainServiceImpl implements ObjectTargetExecute
 	public List<ObjectTargetExecuteVO> getExecutesByObjectTarget(String objectTargetId) {
 		List<ObjectTargetExecute> exexutes = executeRepo.findByObjectTargetId(objectTargetId);
 
-		List<ObjectTargetExecuteVO> executeVOs = new ArrayList<ObjectTargetExecuteVO>(exexutes.size());
-		for (ObjectTargetExecute execute : exexutes) {
-			executeVOs.add(execute.toVO());
-		}
+		return ObjectTagetExecuteAssembler.toVO(exexutes);
+	}
 
-		return executeVOs;
+	@Override
+	public List<ObjectTargetExecuteVO> getExecutesByIds(List<String> ids) {
+		List<ObjectTargetExecute> exexutes = executeRepo.findByIdIn(ids);
+
+		return ObjectTagetExecuteAssembler.toVO(exexutes);
 	}
 
 	/*
@@ -302,5 +284,6 @@ public class ObjectTargetExecuteDomainServiceImpl implements ObjectTargetExecute
 		}
 
 		executeRepo.save(objectTargetExecutes);
+
 	}
 }

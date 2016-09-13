@@ -91,6 +91,12 @@ public class ObjectTargetExecuteDomainServiceStub implements ObjectTargetExecute
 				ObjectTargetExecuteVO[].class, objectTargetId));
 	}
 
+	@Override
+	public List<ObjectTargetExecuteVO> getExecutesByIds(List<String> ids) {
+		return Arrays.asList(restTemplate.getForObject(this.serviceUrl + "/executes/{ids}/ids",
+				ObjectTargetExecuteVO[].class, ids));
+	}
+
 	public List<ObjectTargetExecuteVO> getRemindExecutes() {
 		Date sysDate = DateUtil.getSysDate();
 		return null;

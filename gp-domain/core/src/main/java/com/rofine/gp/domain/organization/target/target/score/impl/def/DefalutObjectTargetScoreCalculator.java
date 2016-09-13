@@ -13,11 +13,11 @@ public class DefalutObjectTargetScoreCalculator implements ObjectTargetScoreCalc
 	@Override
 	public void calculate(ObjectTarget objectTarget) throws TargetException {
 		Float score = 0.0F;
-//		for (ObjectTargetExecuteVO execute : objectTarget.getObjectTargetExecutes()) {
-//			if (execute.getEvaluateScore() != null) {
-//				score += execute.getEvaluateScore();
-//			}
-//		}
+		for (ObjectTargetExecuteVO execute : objectTarget.getObjectTargetExecutes()) {
+			if (execute.getEvaluateScore() != null) {
+				score += execute.getEvaluateScore();
+			}
+		}
 		objectTarget.setScore(score);
 	}
 

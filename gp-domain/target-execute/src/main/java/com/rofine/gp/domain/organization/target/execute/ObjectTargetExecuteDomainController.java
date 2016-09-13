@@ -1,7 +1,6 @@
 package com.rofine.gp.domain.organization.target.execute;
 
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -70,6 +69,11 @@ public class ObjectTargetExecuteDomainController {
 	@RequestMapping(value = "/object/target/{objectTargetId}/executes", method = RequestMethod.GET)
 	public List<ObjectTargetExecuteVO> getExecutesByObjectTarget(@PathVariable("objectTargetId") String objectTargetId) {
 		return executeDomainService.getExecutesByObjectTarget(objectTargetId);
+	}
+
+	@RequestMapping(value = "/executes/{ids}/ids", method = RequestMethod.GET)
+	public List<ObjectTargetExecuteVO> getExecutesByIds(@PathVariable("ids") List<String> ids) {
+		return executeDomainService.getExecutesByIds(ids);
 	}
 
 	@RequestMapping(value = "/scheme/{schemeId}/monitor", method = RequestMethod.GET)
