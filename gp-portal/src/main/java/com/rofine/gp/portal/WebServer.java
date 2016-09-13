@@ -14,7 +14,7 @@ import org.springframework.context.annotation.ImportResource;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.web.client.RestTemplate;
 
-import com.rofine.gp.domain.organization.target.execute.ObjectTargetExecuteDomainStub;
+import com.rofine.gp.domain.organization.target.execute.ObjectTargetExecuteDomainServiceStub;
 import com.rofine.gp.platform.bean.ApplicationContextUtil;
 
 /**

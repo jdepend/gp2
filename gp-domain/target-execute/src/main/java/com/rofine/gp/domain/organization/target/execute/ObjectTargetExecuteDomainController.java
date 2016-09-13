@@ -62,6 +62,6 @@ public class ObjectTargetExecuteDomainController {
 	public void evaluate(@PathVariable("schemeId") String schemeId, @RequestBody List<EvaluateVO> evaluates,
 			@RequestParam(required = false, value = "user") String userInfo) throws TargetException {
 		User user = JsonUtil.toObject(userInfo, UserImpl.class);
-		executeDomainService.evaluate(schemeId, 	evaluates, user);
+		executeDomainService.evaluate(schemeId, evaluates, user);
 	}
 }

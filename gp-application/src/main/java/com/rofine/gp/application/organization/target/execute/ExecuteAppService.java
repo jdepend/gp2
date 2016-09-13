@@ -18,14 +18,14 @@ import com.rofine.gp.domain.organization.target.domain.FillVO;
 import com.rofine.gp.domain.organization.target.domain.ObjectTargetExecuteConstant;
 import com.rofine.gp.domain.organization.target.domain.ObjectTargetExecuteVO;
 import com.rofine.gp.domain.organization.target.domain.TargetStatVO;
-import com.rofine.gp.domain.organization.target.execute.ObjectTargetExecuteDomainStub;
+import com.rofine.gp.domain.organization.target.execute.ObjectTargetExecuteDomainServiceStub;
 import com.rofine.gp.platform.user.User;
 
 @Service
 @Transactional(rollbackFor = Exception.class)
 public class ExecuteAppService {
 	@Autowired
-	private ObjectTargetExecuteDomainStub executeDomainStub;
+	private ObjectTargetExecuteDomainServiceStub executeDomainStub;
 
 	@Autowired
 	private NotificationService notificationService;

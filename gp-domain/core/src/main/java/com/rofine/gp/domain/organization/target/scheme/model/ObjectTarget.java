@@ -11,7 +11,7 @@ import javax.persistence.Table;
 
 import com.rofine.gp.domain.organization.target.TargetException;
 import com.rofine.gp.domain.organization.target.domain.ObjectTargetVO;
-import com.rofine.gp.domain.organization.target.execute.ObjectTargetExecuteDomainStub;
+import com.rofine.gp.domain.organization.target.execute.ObjectTargetExecuteDomainServiceStub;
 import com.rofine.gp.platform.entity.IdEntity2;
 
 @Entity
@@ -53,7 +53,7 @@ public class ObjectTarget extends IdEntity2 {
 	 * @roseuid 573A70BC0137
 	 */
 	public void createExecutes() throws TargetException {
-		ObjectTargetExecuteDomainStub.getBean().createExecutes(this.target.getFrequencyType(), this.toObjectTargetVO());
+		ObjectTargetExecuteDomainServiceStub.getBean().createExecutes(this.target.getFrequencyType(), this.toObjectTargetVO());
 	}
 
 	/**

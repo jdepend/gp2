@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.filter.DelegatingFilterProxy;
 
-import com.rofine.gp.domain.organization.target.execute.ObjectTargetExecuteDomainStub;
+import com.rofine.gp.domain.organization.target.execute.ObjectTargetExecuteDomainServiceStub;
 
 @Configuration
 public class WebConfig {
@@ -46,8 +46,8 @@ public class WebConfig {
 	 * @return A new service instance.
 	 */
 	@Bean
-	public ObjectTargetExecuteDomainStub objectTargetExecuteDomainStub() {
-		return new ObjectTargetExecuteDomainStub(TARGET_EXECUTE_SERVICE_URL);
+	public ObjectTargetExecuteDomainServiceStub objectTargetExecuteDomainStub() {
+		return new ObjectTargetExecuteDomainServiceStub(TARGET_EXECUTE_SERVICE_URL);
 	}
 
 }

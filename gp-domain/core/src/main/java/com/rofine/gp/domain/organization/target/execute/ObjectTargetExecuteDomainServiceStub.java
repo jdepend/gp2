@@ -24,7 +24,7 @@ import com.rofine.gp.platform.util.DateUtil;
 import com.rofine.gp.platform.util.JsonUtil;
 
 @Service
-public class ObjectTargetExecuteDomainStub implements ObjectTargetExecuteDomainService{
+public class ObjectTargetExecuteDomainServiceStub implements ObjectTargetExecuteDomainService{
 
 	@Autowired
 	@LoadBalanced
@@ -32,14 +32,14 @@ public class ObjectTargetExecuteDomainStub implements ObjectTargetExecuteDomainS
 
 	protected String serviceUrl;
 
-	protected Logger logger = Logger.getLogger(ObjectTargetExecuteDomainStub.class.getName());
+	protected Logger logger = Logger.getLogger(ObjectTargetExecuteDomainServiceStub.class.getName());
 
 	public static ObjectTargetExecuteDomainService getBean() {
 		return (ObjectTargetExecuteDomainService) ApplicationContextUtil.getApplicationContext().getBean(
-				"objectTargetExecuteDomainStub");
+				"objectTargetExecuteDomainServiceStub");
 	}
 
-	public ObjectTargetExecuteDomainStub(String serviceUrl) {
+	public ObjectTargetExecuteDomainServiceStub(String serviceUrl) {
 		this.serviceUrl = serviceUrl.startsWith("http") ? serviceUrl : "http://" + serviceUrl;
 	}
 
