@@ -1,5 +1,6 @@
 package com.rofine.gp.domain.organization.target.execute;
 
+import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -62,8 +63,8 @@ public class ObjectTargetExecuteDomainServiceStub implements ObjectTargetExecute
 			params.put("schemeId", schemeId);
 			params.put("user", JsonUtil.toJson(user));
 
-			return restTemplate.getForObject(this.serviceUrl + "/scheme/{schemeId}/fill?user={user}", List.class,
-					params);
+			return Arrays.asList(restTemplate.getForObject(this.serviceUrl + "/scheme/{schemeId}/fill?user={user}",
+					ObjectTargetExecuteVO[].class, params));
 		} catch (Exception e) {
 			throw new TargetException(e);
 		}
@@ -77,8 +78,8 @@ public class ObjectTargetExecuteDomainServiceStub implements ObjectTargetExecute
 			params.put("schemeId", schemeId);
 			params.put("user", JsonUtil.toJson(user));
 
-			return restTemplate.getForObject(this.serviceUrl + "/scheme/{schemeId}/evaluate?user={user}", List.class,
-					params);
+			return Arrays.asList(restTemplate.getForObject(this.serviceUrl + "/scheme/{schemeId}/evaluate?user={user}",
+					ObjectTargetExecuteVO[].class, params));
 		} catch (Exception e) {
 			throw new TargetException(e);
 		}
@@ -137,6 +138,7 @@ public class ObjectTargetExecuteDomainServiceStub implements ObjectTargetExecute
 	 * @roseuid 573BC90901EE
 	 */
 	public List<TargetStatVO> getTargetStats(String schemeId) {
-		return restTemplate.getForObject(this.serviceUrl + "/scheme/{schemeId}/monitor", List.class, schemeId);
+		return Arrays.asList(restTemplate.getForObject(this.serviceUrl + "/scheme/{schemeId}/monitor",
+				TargetStatVO[].class, schemeId));
 	}
 }

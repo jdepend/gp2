@@ -3,10 +3,11 @@
 package com.rofine.gp.application.organization.target.execute;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,14 +21,20 @@ import com.rofine.gp.domain.organization.target.domain.ObjectTargetExecuteConsta
 import com.rofine.gp.domain.organization.target.domain.ObjectTargetExecuteDomainService;
 import com.rofine.gp.domain.organization.target.domain.ObjectTargetExecuteVO;
 import com.rofine.gp.domain.organization.target.domain.TargetStatVO;
+import com.rofine.gp.domain.organization.target.scheme.SchemeDomainService;
+import com.rofine.gp.domain.organization.target.scheme.model.Scheme;
+import com.rofine.gp.domain.organization.target.scheme.model.Target;
 import com.rofine.gp.platform.user.User;
 
 @Service
 @Transactional(rollbackFor = Exception.class)
 public class ExecuteAppService {
-	
+
 	@Autowired
 	private ObjectTargetExecuteDomainService objectTargetExecuteDomainService;
+
+	@Autowired
+	private SchemeDomainService schemeDomainService;
 
 	@Autowired
 	private NotificationService notificationService;
@@ -62,8 +69,19 @@ public class ExecuteAppService {
 	 * @param schemeId
 	 * @roseuid 573B1224022D
 	 */
-	public List<TargetStatVO> monitor(String schemeId) {
-		return objectTargetExecuteDomainService.getTargetStats(schemeId);
+	public List<Target> monitor(String schemeId) {
+		List<TargetStatVO> targetStatVOs = objectTargetExecuteDomainService.getTargetStats(schemeId);
+		Map<String, TargetStatVO> targetStatMap = new HashMap<String, TargetStatVO>();
+		targetStatVOs.forEach(targetStatVO -> {
+			targetStatMap.put(targetStatVO.getTargetId(), targetStatVO);
+		});
+
+		Scheme scheme = schemeDomainService.getScheme(schemeId);
+		scheme.getTargets().forEach(target -> {
+			target.setTargetStatVO(targetStatMap.get(target.getId()));
+		});
+
+		return scheme.getTargets();
 	}
 
 	public void deleteExecutes(List<String> executeIds) {

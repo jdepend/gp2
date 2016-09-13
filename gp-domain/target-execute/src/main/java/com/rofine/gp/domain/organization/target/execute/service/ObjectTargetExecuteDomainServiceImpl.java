@@ -245,10 +245,7 @@ public class ObjectTargetExecuteDomainServiceImpl implements ObjectTargetExecute
 	 */
 	@Override
 	public List<TargetStatVO> getTargetStats(String schemeId) {
-
-		Map<String, TargetStatVO> targetStatVOMap = this.getTargetStatVOs(schemeId);
-
-		return new ArrayList<TargetStatVO>(targetStatVOMap.values());
+		return new ArrayList<TargetStatVO>(this.getTargetStatVOs(schemeId).values());
 	}
 
 	private Map<String, TargetStatVO> getTargetStatVOs(String schemeId) {

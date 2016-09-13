@@ -21,7 +21,7 @@ import com.rofine.gp.domain.organization.target.TargetException;
 import com.rofine.gp.domain.organization.target.domain.EvaluateVO;
 import com.rofine.gp.domain.organization.target.domain.FillVO;
 import com.rofine.gp.domain.organization.target.domain.ObjectTargetExecuteVO;
-import com.rofine.gp.domain.organization.target.domain.TargetStatVO;
+import com.rofine.gp.domain.organization.target.scheme.model.Target;
 import com.rofine.gp.platform.exception.GpException;
 import com.rofine.gp.platform.user.User;
 import com.rofine.gp.portal.security.UserUtil;
@@ -139,7 +139,7 @@ public class ExecuteController {
 	@RequestMapping(value = "/{schemeId}/monitor", method = RequestMethod.GET)
 	public String monitor(@PathVariable String schemeId, Model model) {
 
-		List<TargetStatVO> targets = executeAppService.monitor(schemeId);
+		List<Target> targets = executeAppService.monitor(schemeId);
 
 		model.addAttribute("targets", targets);
 
