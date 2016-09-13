@@ -1,7 +1,6 @@
 package com.rofine.gp.domain.organization.target.domain;
 
 import java.util.List;
-import java.util.Map;
 
 import com.rofine.gp.domain.organization.target.TargetException;
 import com.rofine.gp.platform.user.User;
@@ -38,5 +37,7 @@ public interface ObjectTargetExecuteDomainService {
 	 * @roseuid 573BC90901EE
 	 */
 	public abstract List<TargetStatVO> getTargetStats(String schemeId);
+
+	public abstract List<ObjectTargetExecuteVO> getExecutesByObjectTarget(String objectTargetId);
 
 }

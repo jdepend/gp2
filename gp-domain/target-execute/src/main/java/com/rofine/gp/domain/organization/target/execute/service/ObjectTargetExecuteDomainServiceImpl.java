@@ -224,6 +224,18 @@ public class ObjectTargetExecuteDomainServiceImpl implements ObjectTargetExecute
 		applicationContext.publishEvent(new ObjectTargetExecuteEvalutedEvent(executes));
 	}
 
+	@Override
+	public List<ObjectTargetExecuteVO> getExecutesByObjectTarget(String objectTargetId) {
+		List<ObjectTargetExecute> exexutes = executeRepo.findByObjectTargetId(objectTargetId);
+
+		List<ObjectTargetExecuteVO> executeVOs = new ArrayList<ObjectTargetExecuteVO>(exexutes.size());
+		for (ObjectTargetExecute execute : exexutes) {
+			executeVOs.add(execute.toVO());
+		}
+
+		return executeVOs;
+	}
+
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -280,5 +292,4 @@ public class ObjectTargetExecuteDomainServiceImpl implements ObjectTargetExecute
 
 		return targetStatVOMap;
 	}
-
 }

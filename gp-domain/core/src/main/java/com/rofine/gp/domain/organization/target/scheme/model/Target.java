@@ -15,6 +15,8 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Range;
 
 import com.rofine.gp.domain.organization.target.TargetException;
+import com.rofine.gp.domain.organization.target.domain.ObjectTargetExecuteConstant;
+import com.rofine.gp.domain.organization.target.domain.ObjectTargetExecuteVO;
 import com.rofine.gp.domain.organization.target.domain.TargetStatVO;
 import com.rofine.gp.domain.organization.target.scheme.SchemeObjectVO;
 
@@ -149,41 +151,41 @@ public class Target extends TargetComponent {
 	}
 
 	public void update(Target target) throws TargetException {
-//		if (!this.subjectId.equals(target.getSubjectId())) {
-//			this.subjectId = target.getSubjectId();
-//
-//			for (ObjectTarget objectTarget : this.objectTargets) {
-//				for (ObjectTargetExecute execute : objectTarget.getObjectTargetExecutes()) {
-//					// 影响未评分记录，对于已评分记录不影响
-//					if (!execute.getState().equals(ObjectTargetExecute.State_Evaluated)) {
-//						execute.setSubjectId(this.subjectId);
-//					}
-//				}
-//			}
-//
-//		} else if (!this.frequencyType.equals(target.getFrequencyType())) {
-//			boolean hasOperation = false;
-//			L: for (ObjectTarget objectTarget : this.objectTargets) {
-//				for (ObjectTargetExecute execute : objectTarget.getObjectTargetExecutes()) {
-//					// 影响未操作记录
-//					if (execute.hasOperation()) {
-//						hasOperation = true;
-//						break L;
-//					}
-//				}
-//			}
-//			if (hasOperation) {
-//				throw new TargetException("指标[" + target.getName() + "]，已经有操作记录了，不能修改考核频次 ");
-//			}
-//		} else if (!this.getName().equals(target.getName())) {
-//			this.setName(target.getName());
-//
-//			for (ObjectTarget objectTarget : this.objectTargets) {
-//				for (ObjectTargetExecute execute : objectTarget.getObjectTargetExecutes()) {
-//					execute.setTargetName(this.getName());
-//				}
-//			}
-//		}
+		if (!this.subjectId.equals(target.getSubjectId())) {
+			this.subjectId = target.getSubjectId();
+
+			for (ObjectTarget objectTarget : this.objectTargets) {
+				for (ObjectTargetExecuteVO execute : objectTarget.getObjectTargetExecutes()) {
+					// 影响未评分记录，对于已评分记录不影响
+					if (!execute.getState().equals(ObjectTargetExecuteConstant.State_Evaluated)) {
+						execute.setSubjectId(this.subjectId);
+					}
+				}
+			}
+
+		} else if (!this.frequencyType.equals(target.getFrequencyType())) {
+			boolean hasOperation = false;
+			L: for (ObjectTarget objectTarget : this.objectTargets) {
+				for (ObjectTargetExecuteVO execute : objectTarget.getObjectTargetExecutes()) {
+					// 影响未操作记录
+					if (execute.isHasOperation()) {
+						hasOperation = true;
+						break L;
+					}
+				}
+			}
+			if (hasOperation) {
+				throw new TargetException("指标[" + target.getName() + "]，已经有操作记录了，不能修改考核频次 ");
+			}
+		} else if (!this.getName().equals(target.getName())) {
+			this.setName(target.getName());
+
+			for (ObjectTarget objectTarget : this.objectTargets) {
+				for (ObjectTargetExecuteVO execute : objectTarget.getObjectTargetExecutes()) {
+					execute.setTargetName(this.getName());
+				}
+			}
+		}
 
 		this.save();
 

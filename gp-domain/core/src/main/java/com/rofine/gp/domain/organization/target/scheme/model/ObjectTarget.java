@@ -2,6 +2,8 @@
 
 package com.rofine.gp.domain.organization.target.scheme.model;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -10,6 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.rofine.gp.domain.organization.target.TargetException;
+import com.rofine.gp.domain.organization.target.domain.ObjectTargetExecuteVO;
 import com.rofine.gp.domain.organization.target.domain.ObjectTargetVO;
 import com.rofine.gp.domain.organization.target.execute.ObjectTargetExecuteDomainServiceStub;
 import com.rofine.gp.platform.entity.IdEntity2;
@@ -53,7 +56,12 @@ public class ObjectTarget extends IdEntity2 {
 	 * @roseuid 573A70BC0137
 	 */
 	public void createExecutes() throws TargetException {
-		ObjectTargetExecuteDomainServiceStub.getBean().createExecutes(this.target.getFrequencyType(), this.toObjectTargetVO());
+		ObjectTargetExecuteDomainServiceStub.getBean().createExecutes(this.target.getFrequencyType(),
+				this.toObjectTargetVO());
+	}
+
+	public List<ObjectTargetExecuteVO> getObjectTargetExecutes() {
+		return ObjectTargetExecuteDomainServiceStub.getBean().getExecutesByObjectTarget(this.getId());
 	}
 
 	/**

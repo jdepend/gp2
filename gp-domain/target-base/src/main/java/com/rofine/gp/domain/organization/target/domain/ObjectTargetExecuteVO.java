@@ -2,8 +2,6 @@ package com.rofine.gp.domain.organization.target.domain;
 
 import java.util.Date;
 
-import javax.persistence.Column;
-
 public class ObjectTargetExecuteVO {
 
 	private String id;
@@ -55,6 +53,8 @@ public class ObjectTargetExecuteVO {
 	private String schemeId;
 
 	private String targetId;
+
+	private boolean hasOperation;
 
 	public String getId() {
 		return id;
@@ -254,6 +254,14 @@ public class ObjectTargetExecuteVO {
 
 	public void setTargetId(String targetId) {
 		this.targetId = targetId;
+	}
+
+	public boolean isHasOperation() {
+		return hasOperation;
+	}
+
+	public void setHasOperation(boolean hasOperation) {
+		this.hasOperation = hasOperation;
 	}
 
 }

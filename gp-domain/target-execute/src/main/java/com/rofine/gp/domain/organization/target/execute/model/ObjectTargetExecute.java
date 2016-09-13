@@ -364,6 +364,8 @@ public class ObjectTargetExecute extends IdEntity {
 		vo.setSubjectId(subjectId);
 		vo.setTargetId(objectTargetId);
 		vo.setTargetName(targetName);
+		
+		vo.setHasOperation(this.hasOperation());
 	
 		return vo;
 		

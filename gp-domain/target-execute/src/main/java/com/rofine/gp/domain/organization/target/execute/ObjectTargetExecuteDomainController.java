@@ -67,6 +67,11 @@ public class ObjectTargetExecuteDomainController {
 		executeDomainService.evaluate(schemeId, evaluates, user);
 	}
 
+	@RequestMapping(value = "/object/target/{objectTargetId}/executes", method = RequestMethod.GET)
+	public List<ObjectTargetExecuteVO> getExecutesByObjectTarget(@PathVariable("objectTargetId") String objectTargetId) {
+		return executeDomainService.getExecutesByObjectTarget(objectTargetId);
+	}
+
 	@RequestMapping(value = "/scheme/{schemeId}/monitor", method = RequestMethod.GET)
 	public List<TargetStatVO> getTargetStats(@PathVariable("schemeId") String schemeId) {
 		return executeDomainService.getTargetStats(schemeId);
