@@ -32,51 +32,56 @@ public class ObjectTargetExecuteDomainStub {
 
 	protected String serviceUrl;
 
-	protected Logger logger = Logger
-			.getLogger(ObjectTargetExecuteDomainStub.class.getName());
+	protected Logger logger = Logger.getLogger(ObjectTargetExecuteDomainStub.class.getName());
 
 	public static ObjectTargetExecuteDomainStub getBean() {
-		return (ObjectTargetExecuteDomainStub) ApplicationContextUtil
-				.getApplicationContext().getBean(
-						"objectTargetExecuteDomainStub");
+		return (ObjectTargetExecuteDomainStub) ApplicationContextUtil.getApplicationContext().getBean(
+				"objectTargetExecuteDomainStub");
 	}
 
 	public ObjectTargetExecuteDomainStub(String serviceUrl) {
-		this.serviceUrl = serviceUrl.startsWith("http") ? serviceUrl
-				: "http://" + serviceUrl;
+		this.serviceUrl = serviceUrl.startsWith("http") ? serviceUrl : "http://" + serviceUrl;
 	}
 
 	public void createExecutes(ObjectTargetVO objectTarget, String frequencyType) {
-		restTemplate.postForObject(this.serviceUrl
-				+ "/create/executes/{frequencyType}", objectTarget,
+		restTemplate.postForObject(this.serviceUrl + "/create/executes/{frequencyType}", objectTarget,
 				ObjectTargetVO.class, frequencyType);
 	}
 
 	public void startExecutes(String schemeId) {
-		restTemplate.postForObject(this.serviceUrl
-				+ "/start/executes/scheme/{schemeId}", null, String.class,
-				schemeId);
+		restTemplate.postForObject(this.serviceUrl + "/start/executes/scheme/{schemeId}", null, String.class, schemeId);
 
 	}
 
-	public List<ObjectTargetExecuteVO> getFillingExecutes(String schemeId,
-			User user) throws Exception {
+	public List<ObjectTargetExecuteVO> getFillingExecutes(String schemeId, User user) throws TargetException {
+		try {
+			Map<String, Object> params = new HashMap<String, Object>();
+			params.put("schemeId", schemeId);
+			params.put("user", JsonUtil.toJson(user));
 
-		Map<String, Object> params = new HashMap<String, Object>();
-		params.put("schemeId", schemeId);
-		params.put("user", JsonUtil.toJson(user));
+			return restTemplate.getForObject(this.serviceUrl + "/scheme/{schemeId}/fill?user={user}", List.class,
+					params);
+		} catch (Exception e) {
+			throw new TargetException(e);
+		}
 
-		return restTemplate.getForObject(this.serviceUrl
-				+ "/scheme/{schemeId}/fill?user={user}", List.class, params);
 	}
 
-	public List<ObjectTargetExecuteVO> getEvaluatingExecutes(String schemeId,
-			User user) {
-		return null;
+	public List<ObjectTargetExecuteVO> getEvaluatingExecutes(String schemeId, User user) throws TargetException {
+
+		try {
+			Map<String, Object> params = new HashMap<String, Object>();
+			params.put("schemeId", schemeId);
+			params.put("user", JsonUtil.toJson(user));
+
+			return restTemplate.getForObject(this.serviceUrl + "/scheme/{schemeId}/evaluate?user={user}", List.class,
+					params);
+		} catch (Exception e) {
+			throw new TargetException(e);
+		}
 	}
 
-	public List<ObjectTargetExecuteVO> getOperatedExecutes(String schemeId,
-			User user) {
+	public List<ObjectTargetExecuteVO> getOperatedExecutes(String schemeId, User user) {
 		return null;
 	}
 
@@ -85,15 +90,13 @@ public class ObjectTargetExecuteDomainStub {
 		return null;
 	}
 
-	public void fill(String schemeId, List<FillVO> fills, User user)
-			throws TargetException {
+	public void fill(String schemeId, List<FillVO> fills, User user) throws TargetException {
 		try {
 			Map<String, Object> params = new HashMap<String, Object>();
 			params.put("schemeId", schemeId);
 			params.put("user", JsonUtil.toJson(user));
 
-			restTemplate.postForObject(this.serviceUrl
-					+ "/scheme/{schemeId}/fill?user={user}", fills, List.class,
+			restTemplate.postForObject(this.serviceUrl + "/scheme/{schemeId}/fill?user={user}", fills, List.class,
 					params);
 		} catch (Exception e) {
 			throw new TargetException(e);
@@ -107,8 +110,18 @@ public class ObjectTargetExecuteDomainStub {
 	 * @throws TargetException
 	 * @roseuid 573A8DF9021C
 	 */
-	public void evaluate(List<EvaluateVO> evaluates, User user)
-			throws TargetException {
+	public void evaluate(String schemeId, List<EvaluateVO> evaluates, User user) throws TargetException {
+
+		try {
+			Map<String, Object> params = new HashMap<String, Object>();
+			params.put("schemeId", schemeId);
+			params.put("user", JsonUtil.toJson(user));
+
+			restTemplate.postForObject(this.serviceUrl + "/scheme/{schemeId}/evaluate?user={user}", evaluates,
+					List.class, params);
+		} catch (Exception e) {
+			throw new TargetException(e);
+		}
 
 	}
 

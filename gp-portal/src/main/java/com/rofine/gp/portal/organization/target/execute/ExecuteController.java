@@ -34,7 +34,7 @@ public class ExecuteController {
 	private ExecuteAppService executeAppService;
 
 	@RequestMapping(value = "/{schemeId}/fill", method = RequestMethod.GET)
-	public String fill(@PathVariable String schemeId, Model model) throws Exception {
+	public String fill(@PathVariable String schemeId, Model model) throws GpException {
 
 		User user = UserUtil.getUser();
 		List<ObjectTargetExecuteVO> executes = executeAppService.getFillingExecutes(schemeId, user);
@@ -69,7 +69,6 @@ public class ExecuteController {
 		return rtn;
 	}
 
-
 	@RequestMapping(value = "/{schemeId}/evaluate", method = RequestMethod.GET)
 	public String evaluate(@PathVariable String schemeId, Model model) throws GpException {
 
@@ -96,7 +95,7 @@ public class ExecuteController {
 
 			evaluates.add(evaluate);
 		}
-		executeAppService.evaluate(evaluates, user);
+		executeAppService.evaluate(schemeId, evaluates, user);
 
 		Map<String, Object> rtn = new HashMap<String, Object>();
 

@@ -31,12 +31,12 @@ public class ExecuteAppService {
 	private NotificationService notificationService;
 
 	public List<ObjectTargetExecuteVO> getFillingExecutes(String schemeId,
-			User user) throws Exception {
+			User user) throws TargetException {
 		return executeDomainStub.getFillingExecutes(schemeId, user);
 	}
 
 	public List<ObjectTargetExecuteVO> getEvaluatingExecutes(String schemeId,
-			User user) {
+			User user) throws TargetException {
 		return executeDomainStub.getEvaluatingExecutes(schemeId, user);
 	}
 
@@ -51,9 +51,9 @@ public class ExecuteAppService {
 	 * @throws TargetException
 	 * @roseuid 573A8A9F01C3
 	 */
-	public void evaluate(List<EvaluateVO> evaluates, User user)
+	public void evaluate(String schemeId, List<EvaluateVO> evaluates, User user)
 			throws TargetException {
-		executeDomainStub.evaluate(evaluates, user);
+		executeDomainStub.evaluate(schemeId, evaluates, user);
 	}
 
 	public List<ObjectTargetExecuteVO> getOperatedExecutes(String schemeId,
