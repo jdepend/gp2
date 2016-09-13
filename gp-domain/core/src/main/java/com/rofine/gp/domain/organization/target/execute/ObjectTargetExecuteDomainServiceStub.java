@@ -143,4 +143,9 @@ public class ObjectTargetExecuteDomainServiceStub implements ObjectTargetExecute
 		return Arrays.asList(restTemplate.getForObject(this.serviceUrl + "/scheme/{schemeId}/monitor",
 				TargetStatVO[].class, schemeId));
 	}
+
+	@Override
+	public void closeExecutes(String schemeId) {
+		restTemplate.postForObject(this.serviceUrl + "/close/executes/scheme/{schemeId}", null, String.class, schemeId);
+	}
 }

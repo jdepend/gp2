@@ -292,4 +292,15 @@ public class ObjectTargetExecuteDomainServiceImpl implements ObjectTargetExecute
 
 		return targetStatVOMap;
 	}
+
+	@Override
+	public void closeExecutes(String schemeId) {
+		List<ObjectTargetExecute> objectTargetExecutes = executeRepo.findBySchemeId(schemeId);
+
+		for (ObjectTargetExecute execute : objectTargetExecutes) {
+			execute.close();
+		}
+
+		executeRepo.save(objectTargetExecutes);
+	}
 }

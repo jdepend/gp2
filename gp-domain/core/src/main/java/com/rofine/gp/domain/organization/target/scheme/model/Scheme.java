@@ -163,13 +163,7 @@ public class Scheme extends IdEntity {
 	public void close() {
 		this.state = State_Closed;
 		
-//		for (Target target : targets) {
-//			for (ObjectTarget objectTarget : target.getObjectTargets()) {
-//				for (ObjectTargetExecute execute : objectTarget.getObjectTargetExecutes()) {
-//					execute.close();
-//				}
-//			}
-//		}
+		ObjectTargetExecuteDomainServiceStub.getBean().closeExecutes(this.getId());
 
 		this.save();
 		

@@ -76,4 +76,9 @@ public class ObjectTargetExecuteDomainController {
 	public List<TargetStatVO> getTargetStats(@PathVariable("schemeId") String schemeId) {
 		return executeDomainService.getTargetStats(schemeId);
 	}
+
+	@RequestMapping(value = "/close/executes/scheme/{schemeId}", method = RequestMethod.POST)
+	public void close(@PathVariable("schemeId") String schemeId) throws TargetException {
+		executeDomainService.closeExecutes(schemeId);
+	}
 }
