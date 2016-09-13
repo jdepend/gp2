@@ -40,7 +40,7 @@ public interface ObjectTargetExecuteDomainService {
 
 	public abstract List<ObjectTargetExecuteVO> getExecutesByObjectTarget(String objectTargetId);
 	
-	public abstract List<ObjectTargetExecuteVO> getExecutesByIds(List<String> ids);
+	public abstract List<ObjectTargetExecuteVO> getExecutesByIds(List<String> ids) throws TargetException;
 
 	public abstract void closeExecutes(String schemeId);
 

@@ -92,9 +92,13 @@ public class ObjectTargetExecuteDomainServiceStub implements ObjectTargetExecute
 	}
 
 	@Override
-	public List<ObjectTargetExecuteVO> getExecutesByIds(List<String> ids) {
-		return Arrays.asList(restTemplate.getForObject(this.serviceUrl + "/executes/{ids}/ids",
-				ObjectTargetExecuteVO[].class, ids));
+	public List<ObjectTargetExecuteVO> getExecutesByIds(List<String> ids) throws TargetException {
+		try {
+			return Arrays.asList(restTemplate.getForObject(this.serviceUrl + "/executes/{ids}/ids",
+					ObjectTargetExecuteVO[].class, JsonUtil.toJsonArray(ids)));
+		} catch (Exception e) {
+			throw new TargetException(e);
+		}
 	}
 
 	public List<ObjectTargetExecuteVO> getRemindExecutes() {

@@ -1,5 +1,6 @@
 package com.rofine.gp.domain.organization.target.execute;
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,7 +73,8 @@ public class ObjectTargetExecuteDomainController {
 	}
 
 	@RequestMapping(value = "/executes/{ids}/ids", method = RequestMethod.GET)
-	public List<ObjectTargetExecuteVO> getExecutesByIds(@PathVariable("ids") List<String> ids) {
+	public List<ObjectTargetExecuteVO> getExecutesByIds(@PathVariable("ids") String idInfo) throws TargetException {
+		List<String> ids = JsonUtil.toArray(idInfo, String.class);
 		return executeDomainService.getExecutesByIds(ids);
 	}
 
