@@ -24,7 +24,6 @@ import com.rofine.gp.platform.user.User;
 import com.rofine.gp.platform.util.DateUtil;
 import com.rofine.gp.platform.util.JsonUtil;
 
-@Service
 public class ObjectTargetExecuteDomainServiceStub implements ObjectTargetExecuteDomainService {
 
 	@Autowired
@@ -37,10 +36,7 @@ public class ObjectTargetExecuteDomainServiceStub implements ObjectTargetExecute
 
 	public static ObjectTargetExecuteDomainService getBean() {
 		return (ObjectTargetExecuteDomainService) ApplicationContextUtil.getApplicationContext().getBean(
-				"objectTargetExecuteDomainServiceStub");
-	}
-
-	public ObjectTargetExecuteDomainServiceStub() {
+				"objectTargetExecuteDomainService");
 	}
 
 	public ObjectTargetExecuteDomainServiceStub(String serviceUrl) {
