@@ -16,6 +16,7 @@ import com.rofine.gp.domain.organization.target.domain.FillVO;
 import com.rofine.gp.domain.organization.target.domain.ObjectTargetExecuteDomainService;
 import com.rofine.gp.domain.organization.target.domain.ObjectTargetExecuteVO;
 import com.rofine.gp.domain.organization.target.domain.ObjectTargetVO;
+import com.rofine.gp.domain.organization.target.domain.TargetStatVO;
 import com.rofine.gp.domain.organization.target.domain.UserImpl;
 import com.rofine.gp.platform.user.User;
 import com.rofine.gp.platform.util.JsonUtil;
@@ -63,5 +64,10 @@ public class ObjectTargetExecuteDomainController {
 			@RequestParam(required = false, value = "user") String userInfo) throws TargetException {
 		User user = JsonUtil.toObject(userInfo, UserImpl.class);
 		executeDomainService.evaluate(schemeId, evaluates, user);
+	}
+
+	@RequestMapping(value = "/scheme/{schemeId}/monitor", method = RequestMethod.GET)
+	public List<TargetStatVO> getTargetStats(@PathVariable("schemeId") String schemeId) {
+		return executeDomainService.getTargetStats(schemeId);
 	}
 }

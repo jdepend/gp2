@@ -24,7 +24,7 @@ import com.rofine.gp.platform.util.DateUtil;
 import com.rofine.gp.platform.util.JsonUtil;
 
 @Service
-public class ObjectTargetExecuteDomainServiceStub implements ObjectTargetExecuteDomainService{
+public class ObjectTargetExecuteDomainServiceStub implements ObjectTargetExecuteDomainService {
 
 	@Autowired
 	@LoadBalanced
@@ -39,11 +39,14 @@ public class ObjectTargetExecuteDomainServiceStub implements ObjectTargetExecute
 				"objectTargetExecuteDomainServiceStub");
 	}
 
+	public ObjectTargetExecuteDomainServiceStub() {
+	}
+
 	public ObjectTargetExecuteDomainServiceStub(String serviceUrl) {
 		this.serviceUrl = serviceUrl.startsWith("http") ? serviceUrl : "http://" + serviceUrl;
 	}
 
-	public void createExecutes(String frequencyType, ObjectTargetVO objectTarget) throws TargetException{
+	public void createExecutes(String frequencyType, ObjectTargetVO objectTarget) throws TargetException {
 		restTemplate.postForObject(this.serviceUrl + "/create/executes/{frequencyType}", objectTarget,
 				ObjectTargetVO.class, frequencyType);
 	}
@@ -134,7 +137,6 @@ public class ObjectTargetExecuteDomainServiceStub implements ObjectTargetExecute
 	 * @roseuid 573BC90901EE
 	 */
 	public List<TargetStatVO> getTargetStats(String schemeId) {
-
-		return null;
+		return restTemplate.getForObject(this.serviceUrl + "/scheme/{schemeId}/monitor", List.class, schemeId);
 	}
 }
