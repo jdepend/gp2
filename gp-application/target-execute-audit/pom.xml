@@ -17,5 +17,10 @@
 			<artifactId>gp-domain-target-execute</artifactId>
 			<version>${project.parent.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>com.rofine.gp</groupId>
+			<artifactId>gp-application-target-execute-audit-base</artifactId>
+			<version>${project.parent.version}</version>
+		</dependency>
 	</dependencies>
 </project>
