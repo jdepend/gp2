@@ -9,7 +9,6 @@ import java.util.Map;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
-import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import com.rofine.gp.domain.organization.target.TargetException;
@@ -31,6 +30,8 @@ public class ObjectTargetExecuteDomainServiceStub implements ObjectTargetExecute
 	private RestTemplate restTemplate;
 
 	private String serviceUrl;
+	
+	private final static String urlPrefix = "/rest";
 
 	protected Logger logger = Logger.getLogger(ObjectTargetExecuteDomainServiceStub.class.getName());
 
@@ -41,6 +42,7 @@ public class ObjectTargetExecuteDomainServiceStub implements ObjectTargetExecute
 
 	public ObjectTargetExecuteDomainServiceStub(String serviceUrl) {
 		this.serviceUrl = serviceUrl.startsWith("http") ? serviceUrl : "http://" + serviceUrl;
+		this.serviceUrl += urlPrefix;
 	}
 
 	public void createExecutes(String frequencyType, ObjectTargetVO objectTarget) throws TargetException {

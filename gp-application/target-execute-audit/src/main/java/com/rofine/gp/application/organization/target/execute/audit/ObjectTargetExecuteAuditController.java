@@ -17,6 +17,7 @@ import com.rofine.gp.platform.user.User;
 import com.rofine.gp.platform.util.JsonUtil;
 
 @RestController
+@RequestMapping(value = "/rest")
 public class ObjectTargetExecuteAuditController {
 
 	@Autowired

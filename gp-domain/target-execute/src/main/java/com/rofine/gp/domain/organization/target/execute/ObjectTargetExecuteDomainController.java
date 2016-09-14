@@ -1,6 +1,5 @@
 package com.rofine.gp.domain.organization.target.execute;
 
-import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +22,7 @@ import com.rofine.gp.platform.user.User;
 import com.rofine.gp.platform.util.JsonUtil;
 
 @RestController
+@RequestMapping(value = "/rest")
 public class ObjectTargetExecuteDomainController {
 
 	@Autowired

@@ -9,9 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.web.client.RestTemplate;
 
-import com.rofine.gp.application.organization.target.execute.audit.AuditFillVO;
-import com.rofine.gp.application.organization.target.execute.audit.ObjectTargetExecuteAuditService;
-import com.rofine.gp.domain.organization.target.TargetException;
 import com.rofine.gp.domain.organization.target.domain.ObjectTargetExecuteVO;
 import com.rofine.gp.platform.user.User;
 import com.rofine.gp.platform.util.JsonUtil;
@@ -24,8 +21,11 @@ public class ObjectTargetExecuteAuditServiceStub implements ObjectTargetExecuteA
 
 	private String serviceUrl;
 
+	private final static String urlPrefix = "/rest";
+
 	public ObjectTargetExecuteAuditServiceStub(String serviceUrl) {
 		this.serviceUrl = serviceUrl.startsWith("http") ? serviceUrl : "http://" + serviceUrl;
+		this.serviceUrl += urlPrefix;
 	}
 
 	@Override
