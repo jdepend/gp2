@@ -7,8 +7,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.filter.DelegatingFilterProxy;
 
-import com.rofine.gp.domain.organization.target.domain.ObjectTargetExecuteDomainService;
 import com.rofine.gp.domain.organization.target.execute.ObjectTargetExecuteDomainServiceStub;
+import com.rofine.gp.domain.organization.target.service.ObjectTargetExecuteDomainService;
 
 @Configuration
 public class WebConfig {

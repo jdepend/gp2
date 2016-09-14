@@ -11,4 +11,12 @@
 	<artifactId>gp-application-target-execute-audit-base</artifactId>
 	<name>gp-application-target-execute-audit-base</name>
 	<url>http://maven.apache.org</url>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.rofine.gp</groupId>
+			<artifactId>gp-domain-target-base</artifactId>
+			<version>${project.parent.version}</version>
+		</dependency>
+	</dependencies>
 </project>

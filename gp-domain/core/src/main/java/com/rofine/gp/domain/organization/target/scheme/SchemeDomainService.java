@@ -14,7 +14,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.rofine.gp.domain.organization.target.TargetException;
 import com.rofine.gp.domain.organization.target.domain.EvaluateVO;
-import com.rofine.gp.domain.organization.target.domain.ObjectTargetExecuteDomainService;
 import com.rofine.gp.domain.organization.target.domain.ObjectTargetExecuteVO;
 import com.rofine.gp.domain.organization.target.scheme.event.SchemeCloseBeforeEvent;
 import com.rofine.gp.domain.organization.target.scheme.event.SchemeClosedEvent;
@@ -33,6 +32,7 @@ import com.rofine.gp.domain.organization.target.scheme.repo.ObjectTargetRepo;
 import com.rofine.gp.domain.organization.target.scheme.repo.SchemeRepo;
 import com.rofine.gp.domain.organization.target.scheme.repo.TargetRepo;
 import com.rofine.gp.domain.organization.target.scheme.repo.TargetTypeRepo;
+import com.rofine.gp.domain.organization.target.service.ObjectTargetExecuteDomainService;
 import com.rofine.gp.domain.organization.target.target.score.ObjectScoreCalculator;
 import com.rofine.gp.domain.organization.target.target.score.ObjectTargetScoreCalculator;
 import com.rofine.gp.platform.exception.GpException;

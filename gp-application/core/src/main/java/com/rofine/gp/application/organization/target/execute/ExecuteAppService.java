@@ -14,16 +14,18 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.rofine.gp.application.notification.NotificationService;
 import com.rofine.gp.application.notification.NotificationVO;
+import com.rofine.gp.application.organization.target.execute.audit.AuditFillVO;
+import com.rofine.gp.application.organization.target.execute.audit.ObjectTargetExecuteAuditService;
 import com.rofine.gp.domain.organization.target.TargetException;
 import com.rofine.gp.domain.organization.target.domain.EvaluateVO;
 import com.rofine.gp.domain.organization.target.domain.FillVO;
 import com.rofine.gp.domain.organization.target.domain.ObjectTargetExecuteConstant;
-import com.rofine.gp.domain.organization.target.domain.ObjectTargetExecuteDomainService;
 import com.rofine.gp.domain.organization.target.domain.ObjectTargetExecuteVO;
 import com.rofine.gp.domain.organization.target.domain.TargetStatVO;
 import com.rofine.gp.domain.organization.target.scheme.SchemeDomainService;
 import com.rofine.gp.domain.organization.target.scheme.model.Scheme;
 import com.rofine.gp.domain.organization.target.scheme.model.Target;
+import com.rofine.gp.domain.organization.target.service.ObjectTargetExecuteDomainService;
 import com.rofine.gp.platform.user.User;
 
 @Service
@@ -38,9 +40,16 @@ public class ExecuteAppService {
 
 	@Autowired
 	private NotificationService notificationService;
+	
+	@Autowired
+	private ObjectTargetExecuteAuditService objectTargetExecuteAuditService;
 
 	public List<ObjectTargetExecuteVO> getFillingExecutes(String schemeId, User user) throws TargetException {
 		return objectTargetExecuteDomainService.getFillingExecutes(schemeId, user);
+	}
+	
+	public List<ObjectTargetExecuteVO> getAuditFillingExecutes(String schemeId, User user) {
+		return objectTargetExecuteAuditService.getAuditFillingExecutes(schemeId, user);
 	}
 
 	public List<ObjectTargetExecuteVO> getEvaluatingExecutes(String schemeId, User user) throws TargetException {
@@ -49,6 +58,10 @@ public class ExecuteAppService {
 
 	public void fill(String schemeId, List<FillVO> fills, User user) throws TargetException {
 		objectTargetExecuteDomainService.fill(schemeId, fills, user);
+	}
+	
+	public void auditFill(List<AuditFillVO> auditFills, User user) throws TargetException {
+		objectTargetExecuteAuditService.auditFill(auditFills, user);
 	}
 
 	/**

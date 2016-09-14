@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.rofine.gp.application.organization.target.execute.ExecuteAppService;
+import com.rofine.gp.application.organization.target.execute.audit.AuditFillVO;
 import com.rofine.gp.domain.organization.target.TargetException;
 import com.rofine.gp.domain.organization.target.domain.EvaluateVO;
 import com.rofine.gp.domain.organization.target.domain.FillVO;
@@ -60,6 +61,42 @@ public class ExecuteController {
 			fills.add(fill);
 		}
 		executeAppService.fill(schemeId, fills, user);
+
+		Map<String, Object> rtn = new HashMap<String, Object>();
+
+		rtn.put("code", "1");
+		rtn.put("msg", "操作成功");
+
+		return rtn;
+	}
+	
+	@RequestMapping(value = "/{schemeId}/fill/audit", method = RequestMethod.GET)
+	public String auditFill(@PathVariable String schemeId, Model model) throws GpException {
+
+		User user = UserUtil.getUser();
+		List<ObjectTargetExecuteVO> executes = executeAppService.getAuditFillingExecutes(schemeId, user);
+
+		model.addAttribute("executes", executes);
+
+		return "fill_audit";
+	}
+
+	@RequestMapping(value = "/{schemeId}/fill/audit", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> auditFill(@PathVariable String schemeId, @RequestParam List<String> ids,
+			@RequestParam List<Boolean> results) throws GpException {
+
+		User user = UserUtil.getUser();
+		List<AuditFillVO> auditFills = new ArrayList<AuditFillVO>();
+		AuditFillVO auditFill;
+		for (int index = 0; index < ids.size(); index++) {
+			auditFill = new AuditFillVO();
+			auditFill.setExecuteId(ids.get(index));
+			auditFill.setResult(results.get(index));
+
+			auditFills.add(auditFill);
+		}
+		executeAppService.auditFill(auditFills, user);
 
 		Map<String, Object> rtn = new HashMap<String, Object>();
 
