@@ -60,8 +60,8 @@ public class ExecuteAppService {
 		objectTargetExecuteDomainService.fill(schemeId, fills, user);
 	}
 	
-	public void auditFill(List<AuditFillVO> auditFills, User user) throws TargetException {
-		objectTargetExecuteAuditService.auditFill(auditFills, user);
+	public void auditFill(String schemeId, List<AuditFillVO> auditFills, User user) throws TargetException {
+		objectTargetExecuteAuditService.auditFill(schemeId, auditFills, user);
 	}
 
 	/**

@@ -44,7 +44,7 @@ public class ObjectTargetExecuteAuditServiceImpl implements ObjectTargetExecuteA
 	 * @see com.rofine.gp.application.organization.target.execute.audit.ObjectTargetExecuteAuditService#auditFill(java.util.List, com.rofine.gp.platform.user.User)
 	 */
 	@Override
-	public void auditFill(List<AuditFillVO> auditFills, User auditFillUser) {
+	public void auditFill(String schemeId, List<AuditFillVO> auditFills, User auditFillUser) {
 
 		// 生成审批记录
 		Date sysDate = DateUtil.getSysDate();

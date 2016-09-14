@@ -69,7 +69,7 @@ public class ExecuteController {
 
 		return rtn;
 	}
-	
+
 	@RequestMapping(value = "/{schemeId}/fill/audit", method = RequestMethod.GET)
 	public String auditFill(@PathVariable String schemeId, Model model) throws GpException {
 
@@ -96,7 +96,7 @@ public class ExecuteController {
 
 			auditFills.add(auditFill);
 		}
-		executeAppService.auditFill(auditFills, user);
+		executeAppService.auditFill(schemeId, auditFills, user);
 
 		Map<String, Object> rtn = new HashMap<String, Object>();
 

@@ -1,6 +1,9 @@
 package com.rofine.gp.application.organization.target.execute.audit;
 
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
@@ -8,8 +11,10 @@ import org.springframework.web.client.RestTemplate;
 
 import com.rofine.gp.application.organization.target.execute.audit.AuditFillVO;
 import com.rofine.gp.application.organization.target.execute.audit.ObjectTargetExecuteAuditService;
+import com.rofine.gp.domain.organization.target.TargetException;
 import com.rofine.gp.domain.organization.target.domain.ObjectTargetExecuteVO;
 import com.rofine.gp.platform.user.User;
+import com.rofine.gp.platform.util.JsonUtil;
 
 public class ObjectTargetExecuteAuditServiceStub implements ObjectTargetExecuteAuditService {
 
@@ -18,21 +23,29 @@ public class ObjectTargetExecuteAuditServiceStub implements ObjectTargetExecuteA
 	private RestTemplate restTemplate;
 
 	private String serviceUrl;
-	
+
 	public ObjectTargetExecuteAuditServiceStub(String serviceUrl) {
 		this.serviceUrl = serviceUrl.startsWith("http") ? serviceUrl : "http://" + serviceUrl;
 	}
-	
+
 	@Override
 	public List<ObjectTargetExecuteVO> getAuditFillingExecutes(String schemeId, User user) {
-		// TODO Auto-generated method stub
-		return null;
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("schemeId", schemeId);
+		params.put("user", JsonUtil.toJson(user));
+
+		return Arrays.asList(restTemplate.getForObject(this.serviceUrl + "/scheme/{schemeId}/audit?user={user}",
+				ObjectTargetExecuteVO[].class, params));
 	}
 
 	@Override
-	public void auditFill(List<AuditFillVO> auditFills, User auditFillUser) {
-		// TODO Auto-generated method stub
+	public void auditFill(String schemeId, List<AuditFillVO> auditFills, User user) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("schemeId", schemeId);
+		params.put("user", JsonUtil.toJson(user));
 
+		restTemplate.postForObject(this.serviceUrl + "/scheme/{schemeId}/audit?user={user}", auditFills, List.class,
+				params);
 	}
 
 	@Override

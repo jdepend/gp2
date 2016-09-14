@@ -9,7 +9,7 @@ public interface ObjectTargetExecuteAuditService {
 
 	public abstract List<ObjectTargetExecuteVO> getAuditFillingExecutes(String schemeId, User user);
 
-	public abstract void auditFill(List<AuditFillVO> auditFills, User auditFillUser);
+	public abstract void auditFill(String schemeId, List<AuditFillVO> auditFills, User auditFillUser);
 
 	public abstract void clear();
 
