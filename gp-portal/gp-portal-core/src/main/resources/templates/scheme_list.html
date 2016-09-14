@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+    layout:decorator="base/layout">
+<head>
+<meta charset="utf-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Bootstrap 101 Template</title>
+</head>
+<body class="no-trans">                                                                                       
+	<!-- banner start -->                                                                                 
+	<!-- ================ -->                                                                             
+	<div layout:fragment="content" id="banner" class="banner">                                            
+		<div class="banner-caption">                                                                  
+			<div class="container">                                                               
+				<div>                                                                         
+					<table class="table table-bordered">                                                    
+						<tr>                                                          
+						    <th>Id</th>                                               
+							<th>名字</th>                                         
+							<th>年度</th>                                         
+							<th>状态</th>                                         
+							<th>描述</th>
+							<th>操作</th>                                         
+						</tr>                                                         
+						<tr th:each="scheme,schemeStat : ${schemes.content}">         
+							<td th:text="${scheme.id}"></td>                      
+							<td th:text="${scheme.name}"></td>                    
+							<td th:text="${scheme.year}"></td>                    
+							<td th:text="${scheme.state}"></td>                   
+							<td th:text="${scheme.description}"></td>
+							<td>
+							<input type="submit" value="启动" class="btn btn-default startBtn" th:if="${scheme.state =='init'}"></input>
+							<input type="submit" value="关闭" class="btn btn-default" th:if="${scheme.state =='started'}"></input>
+							</td>             
+						</tr>                                                         
+					</table>
+					<form name="createObjectForm" method="GET" th:action="@{/scheme/create}">
+						<input type="submit" value="创建" class="btn btn-default"></input> 
+					</form>                                                           
+				</div>                                                                        
+			</div>                                                                                
+		</div>                                                                                        
+	</div>                                                                                                
+	<!-- banner end -->                                                                                   
+</body>
+<script type="text/javascript">
+	alert("xxx");
+	debugger;
+	$('.startBtn').click(
+		function(){
+		   debugger;
+           
+        }
+	);
+</script>
+</html>
