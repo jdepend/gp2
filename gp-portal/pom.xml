@@ -26,7 +26,7 @@
 		</dependency>
 		<dependency>
 			<groupId>com.rofine.gp</groupId>
-			<artifactId>gp-application</artifactId>
+			<artifactId>gp-application-core</artifactId>
 			<version>${project.parent.version}</version>
 		</dependency>
 		<dependency>
