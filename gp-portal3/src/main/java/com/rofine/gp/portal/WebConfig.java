@@ -8,8 +8,8 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.filter.DelegatingFilterProxy;
 
 import com.rofine.gp.application.organization.target.execute.audit.ObjectTargetExecuteAuditService;
-import com.rofine.gp.application.organization.target.execute.audit.ObjectTargetExecuteAuditServiceStub;
-import com.rofine.gp.domain.organization.target.execute.ObjectTargetExecuteDomainServiceStub;
+import com.rofine.gp.application.organization.target.execute.audit.ObjectTargetExecuteAuditServiceImpl;
+import com.rofine.gp.domain.organization.target.execute.service.ObjectTargetExecuteDomainServiceImpl;
 import com.rofine.gp.domain.organization.target.service.ObjectTargetExecuteDomainService;
 
 @Configuration
@@ -41,5 +41,15 @@ public class WebConfig {
 	@Bean
 	public RestTemplate restTemplate() {
 		return new RestTemplate();
+	}
+	
+	@Bean
+	public ObjectTargetExecuteDomainService objectTargetExecuteDomainService() {
+		return new ObjectTargetExecuteDomainServiceImpl();
+	}
+
+	@Bean
+	public ObjectTargetExecuteAuditService objectTargetExecuteAuditService() {
+		return new ObjectTargetExecuteAuditServiceImpl();
 	}
 }

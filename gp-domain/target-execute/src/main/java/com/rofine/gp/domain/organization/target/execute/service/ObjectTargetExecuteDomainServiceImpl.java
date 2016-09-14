@@ -33,7 +33,6 @@ import com.rofine.gp.domain.organization.target.target.frequency.TargetFrequency
 import com.rofine.gp.platform.user.User;
 import com.rofine.gp.platform.util.DateUtil;
 
-@Service
 @Transactional(rollbackFor = Exception.class)
 public class ObjectTargetExecuteDomainServiceImpl implements ObjectTargetExecuteDomainService {
 	@Autowired

@@ -7,10 +7,13 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.orm.jpa.EntityScan;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.ImportResource;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
+import com.rofine.gp.domain.organization.target.execute.service.ObjectTargetExecuteDomainServiceImpl;
+import com.rofine.gp.domain.organization.target.service.ObjectTargetExecuteDomainService;
 import com.rofine.gp.platform.bean.ApplicationContextUtil;
 
 /**
@@ -46,5 +49,10 @@ public class ObjectTargetExecuteServer {
 		ApplicationContext applicationContext = SpringApplication.run(ObjectTargetExecuteServer.class, args);
 
 		ApplicationContextUtil.setApplicationContext(applicationContext);
+	}
+	
+	@Bean
+	public ObjectTargetExecuteDomainService objectTargetExecuteDomainService() {
+		return new ObjectTargetExecuteDomainServiceImpl();
 	}
 }
