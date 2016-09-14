@@ -19,7 +19,7 @@
 	<dependencies>
 		<dependency>
 			<groupId>com.rofine.gp</groupId>
-			<artifactId>gp-portal</artifactId>
+			<artifactId>gp-portal-core</artifactId>
 			<version>${project.parent.version}</version>
 		</dependency>
 		<dependency>
