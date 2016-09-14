@@ -7,6 +7,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.filter.DelegatingFilterProxy;
 
+import com.rofine.gp.application.organization.target.execute.audit.ObjectTargetExecuteAuditService;
+import com.rofine.gp.application.organization.target.execute.audit.ObjectTargetExecuteAuditServiceStub;
 import com.rofine.gp.domain.organization.target.execute.ObjectTargetExecuteDomainServiceStub;
 import com.rofine.gp.domain.organization.target.service.ObjectTargetExecuteDomainService;
 
@@ -41,14 +43,13 @@ public class WebConfig {
 		return new RestTemplate();
 	}
 
-	/**
-	 * The AccountService encapsulates the interaction with the micro-service.
-	 * 
-	 * @return A new service instance.
-	 */
 	@Bean
 	public ObjectTargetExecuteDomainService objectTargetExecuteDomainService() {
 		return new ObjectTargetExecuteDomainServiceStub(TARGET_EXECUTE_SERVICE_URL);
 	}
 
+	@Bean
+	public ObjectTargetExecuteAuditService objectTargetExecuteAuditService() {
+		return new ObjectTargetExecuteAuditServiceStub(TARGET_EXECUTE_SERVICE_URL);
+	}
 }

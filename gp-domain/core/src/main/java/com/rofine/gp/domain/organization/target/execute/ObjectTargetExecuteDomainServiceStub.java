@@ -28,9 +28,9 @@ public class ObjectTargetExecuteDomainServiceStub implements ObjectTargetExecute
 
 	@Autowired
 	@LoadBalanced
-	protected RestTemplate restTemplate;
+	private RestTemplate restTemplate;
 
-	protected String serviceUrl;
+	private String serviceUrl;
 
 	protected Logger logger = Logger.getLogger(ObjectTargetExecuteDomainServiceStub.class.getName());
 
