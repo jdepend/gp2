@@ -15,5 +15,6 @@
 	<modules>
 		<module>core</module>
 		<module>target-execute-audit</module>
+		<module>target-execute-audit-base</module>
 	</modules>
 </project>
