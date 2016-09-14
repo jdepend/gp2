@@ -5,7 +5,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>com.rofine.gp</groupId>
-		<artifactId>gp</artifactId>
+		<artifactId>gp-portal</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 	<artifactId>gp-portal3</artifactId>
@@ -17,7 +17,7 @@
 	<dependencies>
 		<dependency>
 			<groupId>com.rofine.gp</groupId>
-			<artifactId>gp-portal</artifactId>
+			<artifactId>gp-portal-core</artifactId>
 			<version>${project.parent.version}</version>
 		</dependency>
 		<dependency>

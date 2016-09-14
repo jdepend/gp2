@@ -5,11 +5,11 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>com.rofine.gp</groupId>
-		<artifactId>gp</artifactId>
+		<artifactId>gp-portal</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	<artifactId>gp-portal</artifactId>
-	<name>gp-portal</name>
+	<artifactId>gp-portal-core</artifactId>
+	<name>gp-portal-core</name>
 	<packaging>war</packaging>
 	<url>http://maven.apache.org</url>
 	<dependencies>
