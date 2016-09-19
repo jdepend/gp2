@@ -1,7 +1,7 @@
-# gp-DDD
+# gp2-微服务
 
-- 1、采用eclipse\jdk8\maven\springboot构建；
-- 2、将应用划分为platform、domain、application、listener、portal、mobile、rest、test八个工程；
+- 1、采用eclipse\jdk8\maven\springboot\springcloud构建；
+- 2、将应用划分为platform、domain(core、target-execute、target-base)、application(core\target-execute-audit\target-execute-audit-base)、listener、portal(core\portal2\portal3)、mobile、rest、test 14个工程；
 - 3、包结构以com.rofine.gp开始；
 - 4、view采用springboot推荐的thymeleaf构建；
 - 5、持久化采用springdata；
@@ -19,3 +19,16 @@
 - 17、通过@Async可实现异步监听；
 - 18、领域模型中错误处理代码应为正常代码量的n倍；
 - 19、领域模型需配备n倍场景的单元测试代码；
+- 20、将指标执行拆分为微服务；
+- 21、将服务间的调用接口化，并且进程内也使用该接口；
+- 22、在ObjectTarget和ObjectTargetExecute间不能在使用onetomany关联；
+
+- 运行说明：
+
+- 1、在mysql下创建gp2和gp2-target-execute两个数据库；
+
+- 2、依次运行RegistrationServer、ObjectTargetExecuteServer（或ObjectTargetExecuteAuditServer）和WebServer；
+
+- 3、执行insert-data.sql（创建用户）
+
+- 4、操作：登陆（admin/123456）
