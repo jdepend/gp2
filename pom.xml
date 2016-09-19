@@ -31,9 +31,7 @@
 		<module>gp-rest</module>
 		<module>gp-listener</module>
 		<module>gp-server-registration</module>
-    <module>gp-portal2</module>
-    <module>gp-portal3</module>
-  </modules>
+	</modules>
 
 	<build>
 		<plugins>
