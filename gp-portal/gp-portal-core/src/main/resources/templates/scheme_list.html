@@ -32,7 +32,9 @@
 							<td th:text="${scheme.description}"></td>
 							<td>
 							<input type="submit" value="启动" class="btn btn-default startBtn" th:if="${scheme.state =='init'}"></input>
-							<input type="submit" value="关闭" class="btn btn-default" th:if="${scheme.state =='started'}"></input>
+							<a href="close.html" class="btn btn-default"
+				               th:href="@{'/scheme/' + ${scheme.id} + '/close'}" 
+				               th:if="${scheme.state =='started'}">关闭</a>
 							</td>             
 						</tr>                                                         
 					</table>
