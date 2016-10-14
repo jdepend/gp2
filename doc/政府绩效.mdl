@@ -7313,7 +7313,7 @@
 						max_height 	28350
 						max_width  	21600
 						origin_x   	0
-						origin_y   	444
+						origin_y   	725
 						items      	(list diagram_item_list
 						    (object ClassView "Class" "Logical View::02.业务分析模型::领域模型::组织绩效::指标考核::个性指标" @293
 							ShowCompartmentStereotypes 	TRUE
@@ -7380,7 +7380,7 @@
 							annotation 	8
 							autoResize 	TRUE)
 						    (object NoteView @295
-							location   	(3264, 3699)
+							location   	(4902, 561)
 							font       	(object Font
 							    size       	10
 							    face       	"Arial"
@@ -7393,7 +7393,7 @@
 							    default_color 	TRUE)
 							label      	(object ItemLabel
 							    Parent_View 	@295
-							    location   	(2332, 3274)
+							    location   	(3970, 136)
 							    fill_color 	13434879
 							    nlines     	17
 							    max_width  	1828
@@ -7577,39 +7577,7 @@
 							quidu      	"5730270D01E0"
 							annotation 	8
 							autoResize 	TRUE)
-						    (object ClassView "Class" "Logical View::02.业务分析模型::领域模型::组织绩效::指标考核::指标考核成绩" @301
-							ShowCompartmentStereotypes 	TRUE
-							SuppressAttribute 	TRUE
-							SuppressOperation 	TRUE
-							IncludeAttribute 	TRUE
-							IncludeOperation 	TRUE
-							location   	(1416, 858)
-							font       	(object Font
-							    size       	10
-							    face       	"Arial"
-							    charSet    	134
-							    bold       	FALSE
-							    italics    	FALSE
-							    underline  	FALSE
-							    strike     	FALSE
-							    color      	0
-							    default_color 	TRUE)
-							label      	(object ItemLabel
-							    Parent_View 	@301
-							    location   	(1416, 1032)
-							    anchor_loc 	1
-							    nlines     	2
-							    max_width  	825
-							    justify    	0
-							    label      	"指标考核成绩")
-							icon       	"Business Entity"
-							icon_style 	"Icon"
-							line_color 	3342489
-							fill_color 	13434879
-							quidu      	"57314D8F0061"
-							annotation 	8
-							autoResize 	TRUE)
-						    (object ClassView "Class" "Logical View::02.业务分析模型::领域模型::组织绩效::指标考核::共性指标" @302
+						    (object ClassView "Class" "Logical View::02.业务分析模型::领域模型::组织绩效::指标考核::共性指标" @301
 							ShowCompartmentStereotypes 	TRUE
 							SuppressAttribute 	TRUE
 							SuppressOperation 	TRUE
@@ -7627,7 +7595,7 @@
 							    color      	0
 							    default_color 	TRUE)
 							label      	(object ItemLabel
-							    Parent_View 	@302
+							    Parent_View 	@301
 							    location   	(1914, 2856)
 							    anchor_loc 	1
 							    nlines     	2
@@ -7641,7 +7609,63 @@
 							quidu      	"572C37700175"
 							annotation 	8
 							autoResize 	TRUE)
-						    (object ClassView "Class" "Logical View::02.业务分析模型::领域模型::组织绩效::指标考核::被考核单元分组" @303
+						    (object NoteView @302
+							location   	(726, 2895)
+							font       	(object Font
+							    size       	10
+							    face       	"Arial"
+							    charSet    	134
+							    bold       	FALSE
+							    italics    	FALSE
+							    underline  	FALSE
+							    strike     	FALSE
+							    color      	0
+							    default_color 	TRUE)
+							label      	(object ItemLabel
+							    Parent_View 	@302
+							    location   	(326, 2764)
+							    fill_color 	13434879
+							    nlines     	6
+							    max_width  	765
+							    justify    	1
+							    label      	"虽然在客户表述和纸质单据上，被考核单元分组是用于建立与指标考核模板关联的对象，但深入交流后，发现后期很有可能修改，这个规则是不稳定的，所谓被考核单元分组是用于快速建立被考核单元和考核指标模板关联的，是手段，手段靠后。")
+							line_color 	3342489
+							fill_color 	13434879
+							width      	825
+							height     	275)
+						    (object ClassView "Class" "Logical View::02.业务分析模型::领域模型::组织绩效::指标考核::指标考核成绩" @303
+							ShowCompartmentStereotypes 	TRUE
+							SuppressAttribute 	TRUE
+							SuppressOperation 	TRUE
+							IncludeAttribute 	TRUE
+							IncludeOperation 	TRUE
+							location   	(1416, 858)
+							font       	(object Font
+							    size       	10
+							    face       	"Arial"
+							    charSet    	134
+							    bold       	FALSE
+							    italics    	FALSE
+							    underline  	FALSE
+							    strike     	FALSE
+							    color      	0
+							    default_color 	TRUE)
+							label      	(object ItemLabel
+							    Parent_View 	@303
+							    location   	(1416, 1032)
+							    anchor_loc 	1
+							    nlines     	2
+							    max_width  	825
+							    justify    	0
+							    label      	"指标考核成绩")
+							icon       	"Business Entity"
+							icon_style 	"Icon"
+							line_color 	3342489
+							fill_color 	13434879
+							quidu      	"57314D8F0061"
+							annotation 	8
+							autoResize 	TRUE)
+						    (object ClassView "Class" "Logical View::02.业务分析模型::领域模型::组织绩效::指标考核::被考核单元分组" @304
 							ShowCompartmentStereotypes 	TRUE
 							SuppressAttribute 	TRUE
 							SuppressOperation 	TRUE
@@ -7659,7 +7683,7 @@
 							    color      	0
 							    default_color 	TRUE)
 							label      	(object ItemLabel
-							    Parent_View 	@303
+							    Parent_View 	@304
 							    location   	(1419, 2856)
 							    anchor_loc 	1
 							    nlines     	2
@@ -7673,14 +7697,14 @@
 							quidu      	"57315073011F"
 							annotation 	8
 							autoResize 	TRUE)
-						    (object AssociationViewNew "$UNNAMED$132" @304
+						    (object AssociationViewNew "$UNNAMED$132" @305
 							location   	(1665, 2682)
 							stereotype 	TRUE
 							line_color 	3342489
 							quidu      	"573154DD023A"
 							roleview_list 	(list RoleViews
-							    (object RoleView "$UNNAMED$133" @305
-								Parent_View 	@304
+							    (object RoleView "$UNNAMED$133" @306
+								Parent_View 	@305
 								location   	(216, 516)
 								font       	(object Font
 								    size       	10
@@ -7695,14 +7719,14 @@
 								stereotype 	TRUE
 								line_color 	3342489
 								quidu      	"573154DE02B6"
-								client     	@304
-								supplier   	@302
+								client     	@305
+								supplier   	@301
 								vertices   	(list Points
 								    (1665, 2682)
 								    (1784, 2682))
 								line_style 	0
-								label      	(object SegLabel @306
-								    Parent_View 	@305
+								label      	(object SegLabel @307
+								    Parent_View 	@306
 								    location   	(1772, 2736)
 								    font       	(object Font
 									size       	10
@@ -7723,8 +7747,8 @@
 								    pctDist    	0.900000
 								    height     	54
 								    orientation 	1))
-							    (object RoleView "$UNNAMED$134" @307
-								Parent_View 	@304
+							    (object RoleView "$UNNAMED$134" @308
+								Parent_View 	@305
 								location   	(216, 516)
 								font       	(object Font
 								    size       	10
@@ -7739,14 +7763,14 @@
 								stereotype 	TRUE
 								line_color 	3342489
 								quidu      	"573154DE02BC"
-								client     	@304
-								supplier   	@303
+								client     	@305
+								supplier   	@304
 								vertices   	(list Points
 								    (1665, 2682)
 								    (1547, 2682))
 								line_style 	0
-								label      	(object SegLabel @308
-								    Parent_View 	@307
+								label      	(object SegLabel @309
+								    Parent_View 	@308
 								    location   	(1560, 2735)
 								    font       	(object Font
 									size       	10
@@ -7767,38 +7791,14 @@
 								    pctDist    	0.889831
 								    height     	53
 								    orientation 	0))))
-						    (object NoteView @309
-							location   	(1158, 3186)
-							font       	(object Font
-							    size       	10
-							    face       	"Arial"
-							    charSet    	134
-							    bold       	FALSE
-							    italics    	FALSE
-							    underline  	FALSE
-							    strike     	FALSE
-							    color      	0
-							    default_color 	TRUE)
-							label      	(object ItemLabel
-							    Parent_View 	@309
-							    location   	(758, 3055)
-							    fill_color 	13434879
-							    nlines     	6
-							    max_width  	765
-							    justify    	1
-							    label      	"虽然在客户表述和纸质单据上，被考核单元分组是用于建立与指标考核模板关联的对象，但深入交流后，发现后期很有可能修改，这个规则是不稳定的，所谓被考核单元分组是用于快速建立被考核单元和考核指标模板关联的，是手段，手段靠后。")
-							line_color 	3342489
-							fill_color 	13434879
-							width      	825
-							height     	275)
 						    (object AttachView "" @310
 							stereotype 	TRUE
 							line_color 	3342489
-							client     	@303
-							supplier   	@309
+							client     	@304
+							supplier   	@302
 							vertices   	(list Points
-							    (1316, 2876)
-							    (1229, 3048))
+							    (1289, 2718)
+							    (1138, 2766))
 							line_style 	0)
 						    (object ClassView "Class" "Logical View::02.业务分析模型::领域模型::组织绩效::指标考核::被考核单元" @311
 							ShowCompartmentStereotypes 	TRUE
@@ -7865,7 +7865,7 @@
 								line_color 	3342489
 								quidu      	"57314DC0025F"
 								client     	@312
-								supplier   	@301
+								supplier   	@303
 								vertices   	(list Points
 								    (1416, 1169)
 								    (1416, 1052))
@@ -7912,7 +7912,7 @@
 								supplier   	@311
 								vertices   	(list Points
 								    (1416, 1169)
-								    (1416, 1287))
+								    (1416, 1289))
 								line_style 	0
 								label      	(object SegLabel @316
 								    Parent_View 	@315
@@ -8015,7 +8015,7 @@
 								line_color 	3342489
 								quidu      	"573154B70047"
 								client     	@317
-								supplier   	@303
+								supplier   	@304
 								vertices   	(list Points
 								    (1411, 2082)
 								    (1411, 2588))
@@ -8114,7 +8114,7 @@
 							supplier   	@322
 							vertices   	(list Points
 							    (4717, 2599)
-							    (4334, 2092))
+							    (4292, 2036))
 							line_style 	0)
 						    (object ClassView "Class" "Logical View::02.业务分析模型::领域模型::组织绩效::指标考核::考核方案" @327
 							ShowCompartmentStereotypes 	TRUE
@@ -8454,7 +8454,7 @@
 								supplier   	@334
 								vertices   	(list Points
 								    (1803, 1383)
-								    (2062, 1383))
+								    (2063, 1383))
 								line_style 	0
 								label      	(object SegLabel @342
 								    Parent_View 	@341
@@ -8562,7 +8562,7 @@
 							supplier   	@345
 							vertices   	(list Points
 							    (2436, 2582)
-							    (2290, 2300))
+							    (2276, 2272))
 							line_style 	0)
 						    (object AssociationViewNew "$UNNAMED$111" @347
 							location   	(1899, 1841)
@@ -8701,10 +8701,10 @@
 								supplier   	@322
 								vertices   	(list Points
 								    (3069, 1863)
-								    (4074, 1863))
+								    (4076, 1863))
 								line_style 	3
 								origin_attachment 	(3069, 1863)
-								terminal_attachment 	(4074, 1863)
+								terminal_attachment 	(4076, 1863)
 								label      	(object SegLabel @354
 								    Parent_View 	@353
 								    location   	(3973, 1917)
@@ -8747,11 +8747,11 @@
 								supplier   	@345
 								vertices   	(list Points
 								    (3069, 1863)
-								    (2213, 1863)
-								    (2213, 2012))
+								    (2210, 1863)
+								    (2210, 2012))
 								line_style 	3
 								origin_attachment 	(3069, 1863)
-								terminal_attachment 	(2213, 2012)
+								terminal_attachment 	(2210, 2012)
 								label      	(object SegLabel @356
 								    Parent_View 	@355
 								    location   	(2255, 1941)
@@ -8898,10 +8898,10 @@
 								supplier   	@345
 								vertices   	(list Points
 								    (1119, 2123)
-								    (2058, 2123))
+								    (2060, 2123))
 								line_style 	3
 								origin_attachment 	(1119, 2123)
-								terminal_attachment 	(2058, 2123)
+								terminal_attachment 	(2060, 2123)
 								label      	(object SegLabel @364
 								    Parent_View 	@363
 								    location   	(1964, 2177)
@@ -8975,11 +8975,11 @@
 							stereotype 	TRUE
 							line_color 	3342489
 							quidu      	"57303A0B000F"
-							client     	@302
+							client     	@301
 							supplier   	@345
 							vertices   	(list Points
 							    (1956, 2588)
-							    (2095, 2300))
+							    (2099, 2287))
 							line_style 	0)
 						    (object ClassView "Class" "Logical View::02.业务分析模型::领域模型::组织绩效::指标考核::考核执行记录" @368
 							ShowCompartmentStereotypes 	TRUE
@@ -9250,7 +9250,7 @@
 							supplier   	@379
 							vertices   	(list Points
 							    (3314, 2566)
-							    (3212, 2336))
+							    (3212, 2334))
 							line_style 	0)
 						    (object InheritView "" @381
 							stereotype 	TRUE
@@ -9260,7 +9260,7 @@
 							supplier   	@379
 							vertices   	(list Points
 							    (2914, 2579)
-							    (3030, 2336))
+							    (3036, 2320))
 							line_style 	0)
 						    (object AssociationViewNew "$UNNAMED$105" @382
 							location   	(2657, 2150)
@@ -9386,11 +9386,11 @@
 								supplier   	@368
 								vertices   	(list Points
 								    (3818, 2142)
-								    (3878, 2142)
-								    (3878, 1565))
+								    (3877, 2142)
+								    (3877, 1565))
 								line_style 	3
 								origin_attachment 	(3818, 2142)
-								terminal_attachment 	(3878, 1565)
+								terminal_attachment 	(3877, 1565)
 								label      	(object SegLabel @389
 								    Parent_View 	@388
 								    location   	(3932, 1629)
@@ -10618,11 +10618,11 @@
 								supplier   	@431
 								vertices   	(list Points
 								    (506, 3441)
-								    (376, 3441)
-								    (376, 2951))
+								    (375, 3441)
+								    (375, 2951))
 								line_style 	3
 								origin_attachment 	(506, 3441)
-								terminal_attachment 	(376, 2951)
+								terminal_attachment 	(375, 2951)
 								label      	(object SegLabel @441
 								    Parent_View 	@440
 								    location   	(451, 3016)
@@ -15398,11 +15398,11 @@
 								supplier   	@571
 								vertices   	(list Points
 								    (342, 1692)
-								    (147, 1692)
-								    (147, 1034))
+								    (146, 1692)
+								    (146, 1034))
 								line_style 	3
 								origin_attachment 	(342, 1692)
-								terminal_attachment 	(147, 1034)
+								terminal_attachment 	(146, 1034)
 								label      	(object SegLabel @612
 								    Parent_View 	@611
 								    location   	(216, 1576)
@@ -16033,11 +16033,11 @@
 								supplier   	@624
 								vertices   	(list Points
 								    (2573, 1999)
-								    (2703, 1999)
-								    (2703, 1043))
+								    (2702, 1999)
+								    (2702, 1043))
 								line_style 	3
 								origin_attachment 	(2573, 1999)
-								terminal_attachment 	(2703, 1043))))
+								terminal_attachment 	(2702, 1043))))
 						    (object AttachView "" @643
 							stereotype 	TRUE
 							line_color 	3342489
@@ -23419,11 +23419,11 @@
 									client     	@897
 									supplier   	@888
 									vertices   	(list Points
-									    (1182, 278)
-									    (1713, 278)
+									    (1182, 277)
+									    (1713, 277)
 									    (1713, 1316))
 									line_style 	3
-									origin_attachment 	(1182, 278)
+									origin_attachment 	(1182, 277)
 									terminal_attachment 	(1713, 1316))))))
 						    (object Class_Category "target"
 							quid       	"5739AFE100F1"
